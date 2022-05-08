@@ -17,6 +17,19 @@ module ApplicationHelper
         "nav-link"
       end
 
+    when 'Регистрация'
+      if numberlink == 3
+        "nav-link active"
+      else
+        "nav-link"
+      end
+    when 'Войти'
+      if numberlink == 4
+        "nav-link active"
+      else
+        "nav-link"
+      end
+      
     else
       "nav-link"
     end

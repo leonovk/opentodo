@@ -1,6 +1,16 @@
 <% provide :current_page, 'Главная' %>
 
-<h1>Hellow World</h1>
-<%= current_user.name %>
+<h3>Ваши данные</h3>
 
-<% currently_at 'Home'%>
+<% if user_signed_in? %>
+<p> Имя: <%= current_user.name %></p>
+<p> ID: <%= current_user.id %></p>
+<p> Логин: <%= current_user.login %></p>
+
+<form action="/session" method="delete">
+<button type="submit" class="btn btn-danger">Выйти</button>
+</form>
+<% else %>
+<p>Войдите в систему</p>
+<% end %>
+

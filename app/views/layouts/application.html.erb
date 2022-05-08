@@ -18,10 +18,6 @@
 
 <% active = (yield(:current_page)) %> 
  
-
-
-
-
   <div class="container">
 
     <nav class="nav" style="margin-top: 5px;">
@@ -29,19 +25,16 @@
         <li class="nav-item">
           <a class="<%= currently_at(active, 1) %>" href="/">Главная</a>
         </li>
+  <% if user_signed_in? %>
         <li class="nav-item">
           <a class="<%= currently_at(active, 2) %>" href="/rooms">Комнаты</a>
         </li>
-  <% if user_signed_in? %>
-        <li class="nav-item">
-          <a class="nav-link disabled"><%= current_user.name %></a>
-        </li>
   <% else %>
         <li class="nav-item">
-           <a class="nav-link" href="/users/new">Регистрация</a>
+           <a class="<%= currently_at(active, 3) %>" href="/users/new">Регистрация</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled">Войти</a>
+          <a class="<%= currently_at(active, 4) %>" href="/session/new">Войти</a>
         </li>
       </ul>
   <% end %>
