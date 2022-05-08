@@ -15,19 +15,37 @@
   </head>
 
   <body>
+
+<% active = (yield(:current_page)) %> 
  
- 
+
+
+
+
   <div class="container">
-    <nav class="nav">
-        <a class="nav-link" href="/">Главная</a>
-        <a class="nav-link" href="/rooms">Комнаты</a>
-        <% if user_signed_in? %>
-        <a class="nav-link disabled"><%= current_user.name %></a>
-        <% else %>
-        <a class="nav-link" href="/users/new">Регистрация</a>
-        <a class="nav-link disabled">Войти</a>
-        <% end %>
-    </nav>
+
+    <nav class="nav" style="margin-top: 5px;">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="<%= currently_at(active, 1) %>" href="/">Главная</a>
+        </li>
+        <li class="nav-item">
+          <a class="<%= currently_at(active, 2) %>" href="/rooms">Комнаты</a>
+        </li>
+  <% if user_signed_in? %>
+        <li class="nav-item">
+          <a class="nav-link disabled"><%= current_user.name %></a>
+        </li>
+  <% else %>
+        <li class="nav-item">
+           <a class="nav-link" href="/users/new">Регистрация</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Войти</a>
+        </li>
+      </ul>
+  <% end %>
+  </nav>
 
     <%= yield %>
 
