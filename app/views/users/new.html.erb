@@ -1,0 +1,19 @@
+<% provide :page_title, 'Регистрация' %>
+
+<h1>Регистрация</h1>
+
+<%= form_with model: @user do |u| %>
+<%= u.label :login %>
+<%= u.text_field :login %>
+
+<%= u.label :name %>
+<%= u.text_field :name %>
+
+<%= u.label :password %>
+<%= u.password_field :password %>
+
+<%= u.label :password_confirmation %>
+<%= u.password_field :password_confirmation %>
+
+<%= u.submit "Register" %>
+<% end %> 
