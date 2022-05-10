@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
-  resource :session, only: %i[new create destroy]
+  resource :session, only: [:new, :create, :destroy]
 
-  resources :users, only: %i[new create]
+  resources :users, only: [:new, :create]
 
-  get '/rooms', to: 'rooms#index'
+  resources :rooms
+
+  
   root 'pages#index'
 
 end
