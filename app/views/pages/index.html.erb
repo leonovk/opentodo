@@ -1,8 +1,9 @@
 <% provide :current_page, 'Главная' %>
 
-<h3>Ваши данные</h3>
+
 
 <% if user_signed_in? %>
+<h3>Ваши данные</h3>
 <p> Имя: <%= current_user.name %></p>
 <p> ID: <%= current_user.id %></p>
 <p> Логин: <%= current_user.login %></p>
@@ -11,6 +12,6 @@
 <button type="submit" class="btn btn-danger">Выйти</button>
 </form>
 <% else %>
-<p>Войдите в систему</p>
+<h1>Войдите в систему</h1>
 <% end %>
 
