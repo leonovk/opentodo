@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   post "/rooms", to: "rooms#create"
   get "/rooms/:id", to: "rooms#show", as: 'current_room'
   post "/rooms/:id", to: "tasks#create"
+  post "/rooms/:id/add/", to: "rooms#add"
+  delete "/rooms/:id/delete/", to: "rooms#destroy"
   delete "/tasks/:id", to: "tasks#destroy"
+  
+  
   
   root 'pages#index'
 
