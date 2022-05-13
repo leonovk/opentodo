@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by login: params[:login]
     if user&.authenticate(params[:password])
+      remember(user) if params[:remember_me] == '1'
       session[:user_id] = user.id
       redirect_to root_path
     else
@@ -14,6 +15,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    forget current_user
     session.delete :user_id
     redirect_to root_path
   end

@@ -6,7 +6,7 @@
 <%= form_with url: session_path do |f| %>
   <div class="mb-3 row">
     <div class="col-sm-2 col-form-label">
-      <%= f.label :login %>
+      <%= f.label :Логин %>
     </div>
 
     <div class="col-sm-10">
@@ -16,7 +16,7 @@
 
   <div class="mb-3 row">
     <div class="col-sm-2 col-form-label">
-      <%= f.label :password, t('.form.password') %>
+      <%= f.label :Пароль %>
     </div>
 
     <div class="col-sm-10">
@@ -24,6 +24,15 @@
     </div>
   </div>
 
+    <div class="row mb-3">
+    <div class="offset-sm-2 col-sm-10">
+      <div class="form-check">
+        <%= f.check_box :remember_me, class: 'form-check-input', value: '1' %>
+        <label class="form-check-label" for="remember_me"><span class="translation_missing" title="translation missing: en.sessions.new.form.remember_me">Запомнить меня</span></label>
+      </div>
+    </div>
+  </div>
+  
   <%= f.submit "Войти", class: 'btn btn-primary' %>
 
 <% end %>
