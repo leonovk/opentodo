@@ -1,24 +1,23 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## OpenToDo
 
-Things you may want to cover:
+### Description
 
-* Ruby version
+A simple task management application.
+Supports multi-user collaboration.
 
-* System dependencies
+Implemented in Ruby 3.1 using Rails 7.0 and PostgreSQL.
 
-* Configuration
+### Launching
 
-* Database creation
+1. Download or clone repo. Install all dependencies and prepare database
 
-* Database initialization
+```bash
+$ bin/setup
+```
 
-* How to run the test suite
+2. Start server
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```bash
+$ bin/dev
+```
