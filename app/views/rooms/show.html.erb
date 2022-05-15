@@ -5,18 +5,18 @@
 <h1><%= @room.title %></h1>
 
 
-<% @users.each do |users| %>
-  <%= users.login %>,
-<% end %>
 
 
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-  <button class="btn btn-primary me-md-2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Участники</button>
+
+
+
+<div class="btn-group" role="group" aria-label="Basic mixed styles example">
+  <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Участники</button>
+  
   <%= form_with url: "/rooms/#{@room.id}/delete", method: :delete do |form| %>
-  <button class="btn btn-danger" type="submit">Удалить</button>
+  <button class="btn btn-danger" type="submit" style="margin-left: 5px;">Удалить</button>
   <% end %>
 </div>
-
 
 <div style="margin-top: 10px;">
 <% @tasks.each do |tasks| %>

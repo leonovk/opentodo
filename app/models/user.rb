@@ -2,6 +2,7 @@ class User < ApplicationRecord
   attr_accessor :remember_token
   has_secure_password
   has_many :recorders
+  has_many :tasks
   has_many :rooms, through: :recorders
   validates :login, presence: true, uniqueness: true
 
