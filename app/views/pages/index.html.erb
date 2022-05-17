@@ -3,14 +3,10 @@
 
 
 <% if user_signed_in? %>
-<h3>Ваши данные</h3>
-<p> Имя: <%= current_user.name %></p>
+<h3>Ваши таски:</h3>
 
-<p> Логин: <%= current_user.login %></p>
+<%= render 'shared/tasks' %>
 
-<form action="/session" method="delete">
-<button type="submit" class="btn btn-danger">Выйти</button>
-</form>
 <% else %>
 <h1>OpenToDo</h1>
 <div class="accordion" id="accordionExample">

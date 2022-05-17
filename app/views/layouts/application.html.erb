@@ -29,6 +29,17 @@
         <li class="nav-item">
           <a class="<%= currently_at(active, 2) %>" href="/rooms">Комнаты</a>
         </li>
+          <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><%= current_user.login %></a>
+    <ul class="dropdown-menu">
+      
+      
+      <form action="/session" method="delete">
+      <li><button type="submit" class="dropdown-item">Выйти</button></li>
+      </form>
+    </ul>
+  </li>
+
   <% else %>
         <li class="nav-item">
            <a class="<%= currently_at(active, 3) %>" href="/users/new">Регистрация</a>
@@ -39,6 +50,12 @@
       </ul>
   <% end %>
   </nav>
+
+  <% if flash[:class].present? %>
+  <div class="<%= flash[:class] %>" role="alert" style="margin-top: 10px;">
+  <%= flash[:text] %>
+  </div>
+  <% end %>
 
     <%= yield %>
 

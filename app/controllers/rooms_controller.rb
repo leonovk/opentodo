@@ -21,7 +21,7 @@ class RoomsController < ApplicationController
     @room = Room.find(params['id'])
     user = @room.users.find_by(id: current_user.id)
     if user.present?
-      @tasks = @room.tasks
+      @tasks = Task.where(room_id: params['id'])
       @users = @room.users
     else
       redirect_to root_path
@@ -44,8 +44,12 @@ class RoomsController < ApplicationController
         end
         redirect_to "/rooms/#{params['id']}"
       end
+      flash[:class] = "alert alert-success"
+      flash[:text] = 'Успех!'
     else
-      redirect_to root_path
+      flash[:class] = "alert alert-danger"
+      flash[:text] = 'Ошибка прав на комнату!'
+      redirect_to "/rooms/#{params['id']}"
     end
   end
 

@@ -10,7 +10,9 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path
     else
-      render new_user_path
+      flash[:class] = "alert alert-danger"
+      flash[:text] = 'Ошибка!'
+      redirect_to new_user_path
     end
   end
 
