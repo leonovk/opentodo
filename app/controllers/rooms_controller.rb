@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   before_action :authorize_chek
+  
 
   def index
     user = User.find(current_user.id)
@@ -16,6 +17,20 @@ class RoomsController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def edit
+    @room = Room.find_by id: params['id']
+    room_rights(params['id'])
+  end
+
+  def update
+    room_rights(params['id'])
+    @room = Room.find_by id: params['id']
+    if @room.update(title: params['title'], description: params['description'])
+      redirect_to "/rooms/#{params['id']}"
+    end  
+  end
+  
   
   def show
     @room = Room.find(params['id'])
@@ -48,7 +63,7 @@ class RoomsController < ApplicationController
       flash[:text] = 'Успех!'
     else
       flash[:class] = "alert alert-danger"
-      flash[:text] = 'Ошибка прав на комнату!'
+      flash[:text] = 'Ошибка!'
       redirect_to "/rooms/#{params['id']}"
     end
   end
@@ -77,4 +92,14 @@ class RoomsController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def room_rights(room_id)
+    room = Room.find(room_id)
+    if room.owner_id != current_user.id
+      flash[:class] = "alert alert-danger"
+      flash[:text] = 'Ошибка!'
+      redirect_to "/rooms/#{room_id}"
+    end    
+  end
+
 end

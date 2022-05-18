@@ -1,0 +1,13 @@
+<h1>Изменить комнату</h1>
+
+  <%= form_with url: "/rooms/#{@room.id}", method: :patch do |form| %>
+  <div class="mb-3">
+    <label for="title" class="form-label">Название</label>
+    <input type="text" class="form-control" id="title" value="<%= @room.title %>" name="title">
+  </div>
+  <div class="mb-3">
+    <label for="desc" class="form-label">Описание</label>
+    <input type="text" class="form-control" id="desc" value="<%= @room.description %>" name="description">
+  </div>
+  <button type="submit" class="btn btn-primary">Сохранить</button>
+  <% end %>

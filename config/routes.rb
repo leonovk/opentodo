@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
 
+  resources :rooms, only: [:edit, :update]
+
   get "/rooms", to: "rooms#index"
   post "/rooms", to: "rooms#create"
   get "/rooms/:id", to: "rooms#show", as: 'current_room'

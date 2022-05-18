@@ -21,10 +21,14 @@
 <h3 style="margin-top: 15px;">Все комнаты:</h3>
 
 
-<div class="card" style="width: 18rem;">
-  <ul class="list-group list-group-flush">
-    <% @rooms.each do |r| %>
-    <li class="list-group-item"><a href="/rooms/<%= r.id %>" class="btn btn-light"><%= r.title %></a></li>
-    <% end %>
-  </ul>
+
+
+<% @rooms.each do |r| %>
+<div class="card" style="margin-top: 10px;">
+  <h5 class="card-header"><%= r.title %></h5>
+  <div class="card-body">
+    <p class="card-text"><%= r.description %></p>
+    <a href="/rooms/<%= r.id %>" class="btn btn-primary">Открыть</a>
+  </div>
 </div>
+<% end %>

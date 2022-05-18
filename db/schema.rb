@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_13_144103) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_18_162105) do
   create_table "recorders", force: :cascade do |t|
     t.integer "room_id"
     t.integer "user_id"
@@ -23,6 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_13_144103) do
     t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "description"
   end
 
   create_table "tasks", force: :cascade do |t|

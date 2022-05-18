@@ -2,7 +2,8 @@
 <% provide :current_page, 'Комнаты' %>
 
 
-<h1><%= @room.title %></h1>
+<h1 class="display-5"><%= @room.title %></h1>
+<p class="h4"><%= @room.description %></p>
 
 
 
@@ -11,11 +12,16 @@
 
 
 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+  <form>
   <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Участники</button>
-  
+  </form>
+  <form action="/rooms/<%= @room.id %>/edit">
+  <button class="btn btn-warning" style="margin-left: 5px;">Изменить</button>
+  </form>
   <%= form_with url: "/rooms/#{@room.id}/delete", method: :delete do |form| %>
   <button class="btn btn-danger" type="submit" style="margin-left: 5px;">Удалить</button>
   <% end %>
+  
 </div>
 
 
