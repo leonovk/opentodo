@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   delete "/rooms/:id/delete/", to: "rooms#destroy"
   delete "/tasks/:id", to: "tasks#destroy"
   post "/", to: "tasks#create"
-  
+  get "/admin", to: "admins#index"
   
   root 'pages#index'
 
