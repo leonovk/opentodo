@@ -6,7 +6,7 @@
 A simple task management application.
 Supports multi-user collaboration.
 
-Implemented in Ruby 3.1 using Rails 7.0 and PostgreSQL.
+Implemented in Ruby 3.1 using Rails 7.0.2 and PostgreSQL.
 
 ### Launching
 

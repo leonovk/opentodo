@@ -21,12 +21,15 @@
   <%= form_with url: "/rooms/#{@room.id}/delete", method: :delete do |form| %>
   <button class="btn btn-danger" type="submit" style="margin-left: 5px;">Удалить</button>
   <% end %>
-  
 </div>
 
 
+
+<div style="margin-top: 20px;">
+
 <%= render 'shared/tasks'%>
 
+</div>
 
 
 
@@ -51,7 +54,6 @@
           </div>
           <div class="col-auto">
           <span id="passwordHelpInline" class="form-text">
-      
           </span>
           </div>
           </div>
@@ -59,13 +61,10 @@
           <button type="submit" name="add" class="btn btn-primary" value="1">Добавить</button>
           <button type="submit" name="remove" class="btn btn-primary" value="2">Удалить</button>
           </div>
-          
         <% end %>
-        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-
       </div>
     </div>
   </div>
