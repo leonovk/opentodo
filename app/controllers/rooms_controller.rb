@@ -36,7 +36,7 @@ class RoomsController < ApplicationController
     @room = Room.find(params['id'])
     user = @room.users.find_by(id: current_user.id)
     if user.present?
-      @tasks = Task.where(room_id: params['id'])
+      @tasks = @room.tasks
       @users = @room.users
     else
       redirect_to root_path
