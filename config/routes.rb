@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   post "/rooms/:id", to: "tasks#create"
   post "/rooms/:id/add/", to: "rooms#add"
   delete "/rooms/:id/delete/", to: "rooms#destroy"
-  delete "/tasks/:id", to: "tasks#destroy"
+
+
+  post "/rooms/tasks/status/:id", to: "tasks#status"
+
+
   post "/", to: "tasks#create"
   get "/admin", to: "admins#index"
   

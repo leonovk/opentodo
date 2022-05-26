@@ -14,11 +14,42 @@ class TasksController < ApplicationController
     end
   end
 
-  def destroy
-    task = Task.find(params['id'])
-    task.destroy
-    redirect_to current_room_path
+  def status
+    parameters = []
+    not_include = ['authenticity_token', 'get', 'controller', 'action', 'id']
+    params.each do |k, v|
+      if !not_include.include? k
+        parameters << k
+      end
+    end
+
+    for id in parameters do
+      task = Task.find(id)
+      if params['get'] == '1'
+        task.destroy
+      elsif params['get'] == '2'
+        
+        if task.status == true
+          task.update(status: '0')
+        else
+          task.update(status: '1') 
+        end
+
+      else
+        flash[:class] = "alert alert-danger"
+        flash[:text] = 'Ошибка!'
+      end
+    end
+
+    if params['id'] != '0'
+      redirect_to "/rooms/#{params['id']}"
+    else
+      redirect_to root_path
+    end
+    
+    
   end
+  
 
   private
   def room_determinant
