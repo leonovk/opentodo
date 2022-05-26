@@ -20,7 +20,19 @@
 
 <li class="list-group-item">
   <input class="form-check-input me-1" type="checkbox" value="isset" name="<%= tasks.id %>">
-  <%= tasks.title %>
+  
+   <a data-bs-toggle="collapse" href="#collapseExample<%= tasks.id %>" role="button" aria-expanded="false" aria-controls="collapseExample" style="color: black;text-decoration: none;">
+    <%= tasks.title %>
+  </a>
+
+  <div class="collapse" id="collapseExample<%= tasks.id %>">
+  <div class="card card-body">
+    <%= tasks.description %><a href="/tasks/<%= tasks.id %>/edit">Изменить</a>
+  </div>
+</div>
+
+
+
     <% if tasks.status == true %>
     <span class="badge bg-primary rounded-pill">В работе</span>
     <% end %>

@@ -14,6 +14,25 @@ class TasksController < ApplicationController
     end
   end
 
+  def edit
+    task_rights(params['id'])
+    @task = Task.find_by id: params['id'] 
+  end
+
+  def update
+    task_rights(params['id'])
+    task = Task.find_by id: params['id']
+    if task.update(title: params['title'], description: params['description'])
+      if task.room_id != 0
+        redirect_to "/rooms/#{task.room_id}"
+      else
+        redirect_to root_path
+      end    
+    end
+    
+  end
+  
+
   def status
     parameters = []
     not_include = ['authenticity_token', 'get', 'controller', 'action', 'id']
@@ -59,4 +78,19 @@ class TasksController < ApplicationController
       @room_id = params['id']
     end
   end
+
+  def task_rights(task_id)
+    task = Task.find(task_id)
+    if task.room_id == 0
+      if task.user_id != current_user.id
+        redirect_to root_path
+      end
+    else
+      rec = Recorder.find_by(user_id: current_user.id, room_id: task.room_id)
+      if !rec.present?
+        redirect_to root_path
+      end    
+    end 
+  end
+  
 end
