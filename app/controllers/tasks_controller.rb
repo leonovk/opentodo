@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :room_determinant
+  
 
   def create
     task = Task.new(title: params['task'], status: 0, user_id: current_user.id, room_id: @room_id)
@@ -81,15 +82,19 @@ class TasksController < ApplicationController
 
   def task_rights(task_id)
     task = Task.find(task_id)
-    if task.room_id == 0
-      if task.user_id != current_user.id
-        redirect_to root_path
+    if user_signed_in?
+      if task.room_id == 0
+        if task.user_id != current_user.id
+          redirect_to root_path
+        end
+      else
+        rec = Recorder.find_by(user_id: current_user.id, room_id: task.room_id)
+        if !rec.present?
+          redirect_to root_path
+        end
       end
     else
-      rec = Recorder.find_by(user_id: current_user.id, room_id: task.room_id)
-      if !rec.present?
-        redirect_to root_path
-      end    
+      redirect_to root_path  
     end 
   end
   
