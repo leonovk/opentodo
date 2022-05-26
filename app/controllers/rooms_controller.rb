@@ -4,7 +4,7 @@ class RoomsController < ApplicationController
 
   def index
     user = User.find(current_user.id)
-    @rooms = user.rooms
+    @rooms = user.rooms.order("updated_at DESC")
   end
 
   def create 
