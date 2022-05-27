@@ -2,7 +2,7 @@ class AdminsController < ApplicationController
   before_action :admin_rights
  
   def index
-    @users = User.all
+    @users = User.all.order("id DESC")
   end
  
   private
