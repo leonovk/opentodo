@@ -11,7 +11,9 @@ class TasksController < ApplicationController
         redirect_to root_path
       end
     else
-      redirect_to "/rooms"
+      redirect_to root_path
+      flash[:class] = "alert alert-danger"
+      flash[:text] = 'Ошибка! Вы что то делаете не правильно, попробуйте еще раз!'
     end
   end
 
