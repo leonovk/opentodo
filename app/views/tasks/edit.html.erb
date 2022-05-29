@@ -8,7 +8,9 @@
   </div>
   <div class="mb-3">
     <label for="desc" class="form-label">Описание</label>
-    <input type="text" class="form-control" id="desc" value="<%= @task.description %>" name="description">
+    
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" id="desc" name="description"><%= @task.description %></textarea>
+
   </div>
   <button type="submit" class="btn btn-primary">Сохранить</button>
   <% end %>
