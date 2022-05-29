@@ -38,5 +38,9 @@
     </p>
     <a href="/rooms/<%= r.id %>" class="btn btn-primary">Открыть</a>
   </div>
+    <div class="card-footer text-muted">
+    <%= l(r.created_at, format: "%d.%m.%Y | %H:%M") %>
+  </div>
+
 </div>
 <% end %>
