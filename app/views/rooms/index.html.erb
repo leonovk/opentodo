@@ -28,6 +28,14 @@
   <h5 class="card-header"><%= r.title %></h5>
   <div class="card-body">
     <p class="card-text"><%= r.description %></p>
+    <% user = r.users %>
+    <% i = 0 %>
+    <p>Участники:
+    <% user.each do |u| %>
+    <% i = i + 1 %>
+     <%= u.login %><% if i < user.size %>,<% end %>
+    <% end %>  
+    </p>
     <a href="/rooms/<%= r.id %>" class="btn btn-primary">Открыть</a>
   </div>
 </div>
