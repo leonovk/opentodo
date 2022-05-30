@@ -9,45 +9,50 @@
 <%= render 'shared/taskform' %>
 
 <% else %>
-<h1>OpenToDo</h1>
-<div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        Что это такое?
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        Приложение таск-менеджер (списки/задачи) позволяющие вам создавать комнаты и списки внутри них. Вы можете создавать неограниченное число комнат. В каждую комнату вы также можете добавлять неограниченное число других пользователей и ввести совместные списки. 
-      </div>
+
+<div class="row">
+ <div class="col-md-8 mx-auto" style="margin-top:50px;">
+
+      <center><h1>Организуйте работу и жизнь.</h1></center>
+      <center><h2>OpenTodo – список дел и таск-менеджер. Он позволяет организовывать работу и задачи, а также кооперироваться с друзьями или коллегами.</h2></center>
+      <center><a type="button" class="btn btn-primary btn-lg mt-3 mb-5" href="/users/new">Начать организовывать</a></center>
+
+  </div>
+  </div>
+
+
+  
+<div class="">
+<center><img src="images/demo.png" class="img-fluid mt-5 shadow-lg p-3 mb-5 bg-body rounded" alt="..." id="demo"></center>
+</div>
+
+<div class="card-group mb-5">
+  <div class="card">
+    
+    <div class="card-body">
+      <h5 class="card-title">Что это такое?</h5>
+      <p class="card-text">Приложение таск-менеджер (списки/задачи) позволяющие вам создавать комнаты и списки внутри них. Вы можете создавать неограниченное число комнат. В каждую комнату вы также можете добавлять неограниченное число других пользователей и ввести совместные списки. </p>
+      
     </div>
   </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        Как этим пользоваться? 
-      </button>
-    </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        На самом деле, как этим пользоваться решать только вам. Вы можете создать комнату "фильмы" и вести в ней список просмотренных или не просмотренных фильмов. Вы можете создать комнату "список покупок" и занести в нее планируемые покупки на завтра, а после просто удалить комнату. Все комнаты создаются и удаляются по нажатию одной кнопки. Или вы можете создать комнату "проект по истории", добавить в нее остальных членов вашей группы и занести в нее список задач по проекту.
-      </div>
+  <div class="card">
+    
+    <div class="card-body">
+      <h5 class="card-title">Как этим пользоваться? </h5>
+      <p class="card-text">На самом деле, как этим пользоваться решать только вам. Вы можете создать комнату "фильмы" и вести в ней список просмотренных или не просмотренных фильмов. Вы можете создать комнату "список покупок" и занести в нее планируемые покупки на завтра, а после просто удалить комнату. Все комнаты создаются и удаляются по нажатию одной кнопки. Или вы можете создать комнату "проект по истории", добавить в нее остальных членов вашей группы и занести в нее список задач по проекту.</p>
+      
     </div>
   </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingThree">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        Исходный код
-      </button>
-    </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-        <strong>Проект с открытым исходным кодом. </strong>Исходный код доступен по ссылке - <a href="https://github.com/leonovk/opentodo">leonovk/opentodo</a>
-      </div>
+  <div class="card">
+    
+    <div class="card-body">
+      <h5 class="card-title">Исходный код</h5>
+      <p class="card-text">Проект с открытым исходным кодом. </strong>Исходный код доступен по ссылке - <a href="https://github.com/leonovk/opentodo">leonovk/opentodo</a></p>
+      
     </div>
   </div>
 </div>
+
 <% end %>
 
 

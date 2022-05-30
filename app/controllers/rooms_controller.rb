@@ -1,4 +1,5 @@
 class RoomsController < ApplicationController
+  include Notifications
   before_action :authorize_chek
   
 
@@ -17,8 +18,7 @@ class RoomsController < ApplicationController
       flash[:text] = 'Комната успешно создана!'
     else
       redirect_to rooms_path
-      flash[:class] = "alert alert-danger"
-      flash[:text] = 'Ошибка!'
+      message('error')
     end
   end
 
@@ -63,11 +63,9 @@ class RoomsController < ApplicationController
         end
         redirect_to "/rooms/#{params['id']}"
       end
-      flash[:class] = "alert alert-success"
-      flash[:text] = 'Успех!'
+      message('success')
     else
-      flash[:class] = "alert alert-danger"
-      flash[:text] = 'Ошибка!'
+      message('error')
       redirect_to "/rooms/#{params['id']}"
     end
   end
@@ -100,8 +98,7 @@ class RoomsController < ApplicationController
   def room_rights(room_id)
     room = Room.find(room_id)
     if room.owner_id != current_user.id
-      flash[:class] = "alert alert-danger"
-      flash[:text] = 'Ошибка!'
+      message('error')
       redirect_to "/rooms/#{room_id}"
     end    
   end

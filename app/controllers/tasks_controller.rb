@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  include Notifications
+
   before_action :room_determinant
   
 
@@ -13,8 +15,7 @@ class TasksController < ApplicationController
       end
     else
       redirect_to root_path
-      flash[:class] = "alert alert-danger"
-      flash[:text] = 'Ошибка! Вы что то делаете не правильно, попробуйте еще раз!'
+      message('error')
     end
   end
 
@@ -59,8 +60,7 @@ class TasksController < ApplicationController
         end
 
       else
-        flash[:class] = "alert alert-danger"
-        flash[:text] = 'Ошибка!'
+        message('error')
       end
     end
 

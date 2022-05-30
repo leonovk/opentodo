@@ -2,3 +2,19 @@ body {
   background-color: #f8f9fc;
 }
 
+
+@media (max-width: 999px) {
+  #demo {
+    max-width: 100%;
+  }
+}
+@media (min-width: 1000px) {
+  #demo {
+    max-width: 80%;
+  }
+}
+@media (max-width: 570px) {
+  #demo {
+    display: none;
+  }
+}

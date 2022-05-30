@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include Notifications
   before_action :require_no_signed_in, only: [:new, :create]
   before_action :require_signed?, only: [:edit, :update]
 
@@ -14,20 +15,20 @@ class UsersController < ApplicationController
     if params['old_password'] == ''
       user = User.find_by(id: current_user.id ).update(login: params['login'], name: params['name'])
       redirect_to root_path
-      flash[:class] = "alert alert-success"
-      flash[:text] = "Сохранено!"
+      message('success')
     else
       user = User.find_by id: current_user.id
       if user.authenticate(params[:old_password])
         if user.update(login: params['login'], name: params['name'], password: params['password'], password_confirmation: params['password_confirmation'])
           redirect_to root_path
-          flash[:class] = "alert alert-success"
-          flash[:text] = "Сохранено!"
+          message('success')
+        else
+          redirect_to root_path
+          message('error')
         end
       else
         redirect_to root_path
-        flash[:class] = "alert alert-danger"
-        flash[:text] = 'Ошибка!'
+        message('error')
       end
     end
   end
@@ -41,8 +42,7 @@ class UsersController < ApplicationController
       flash[:class] = "alert alert-success"
       flash[:text] = "Добро пожаловать, #{@user.name}!"
     else
-      flash[:class] = "alert alert-danger"
-      flash[:text] = 'Ошибка!'
+      message('error')
       redirect_to new_user_path
     end
   end
