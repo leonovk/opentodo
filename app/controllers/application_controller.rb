@@ -16,6 +16,23 @@ class ApplicationController < ActionController::Base
     current_user.present?
   end
 
+  def require_no_signed_in
+    if user_signed_in?
+      flash[:class] = "alert alert-warning"
+      flash[:text] = 'Вы уже авторизованы!'
+      redirect_to root_path
+    end
+  end
+
+  def require_signed?
+    if user_signed_in?
+      true
+    else
+      redirect_to root_path
+    end
+  end
+  
+
   def remember(user)
     user.remember_me
     cookies.encrypted.permanent[:remember_token] = user.remember_token

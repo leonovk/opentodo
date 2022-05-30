@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :require_no_signed_in, only: :new
+  before_action :require_signed?, only: :destroy
 
   def new
   end

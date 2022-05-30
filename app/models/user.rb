@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :tasks
   has_many :rooms, through: :recorders
   validates :login, presence: true, uniqueness: true, length: { minimum: 3 }
-  validates :name, length: { maximum: 50 }
+  validates :name, length: { maximum: 50, minimum: 2 }, presence: true
 
   def remember_me
     self.remember_token = SecureRandom.urlsafe_base64

@@ -1,0 +1,43 @@
+<% provide :page_title, 'Настройки' %>
+
+<h1>Изменить профиль</h1>
+
+<%= form_with url: "/users/#{current_user.id}", method: :patch do |u| %>
+
+  <div class="row mb-3">
+    <label for="login3" class="col-sm-2 col-form-label">Логин</label>
+    <div class="col-sm-10">
+      <%= u.text_field :login, class: 'form-control', id: 'login3', value: current_user.login %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="name3_edit" class="col-sm-2 col-form-label">Имя</label>
+    <div class="col-sm-10">
+      <%= u.text_field :name, class: 'form-control', id: 'name3_edit', value: current_user.name %>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="inputPasswordnew" class="col-sm-2 col-form-label">Пароль</label>
+    <div class="col-sm-10">
+      <%= u.password_field :old_password, type: 'password', class: 'form-control', id: 'inputPasswordnew', placeholder: 'Новый пароль'%>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">Новый пароль</label>
+    <div class="col-sm-10">
+      <%= u.password_field :password, type: 'password', class: 'form-control', id: 'inputPassword3', placeholder: 'Пароль'%>
+    </div>
+  </div>
+
+    <div class="row mb-3">
+    <label for="inputpassword_confirmation3" class="col-sm-2 col-form-label">Подтверждение пароля</label>
+    <div class="col-sm-10">
+      <%= u.password_field :password_confirmation, type: 'password', class: 'form-control', id: 'inputpassword_confirmation3', placeholder: 'Подтверждение пароля'%>
+    </div>
+  </div>
+
+<%= u.submit "Сохранить", class: 'btn btn-primary' %>
+<% end %> 
