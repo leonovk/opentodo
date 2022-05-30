@@ -20,7 +20,9 @@
 <% end %>
 <h3 style="margin-top: 15px;">Все комнаты:</h3>
 
-
+<div style="margin-top: 10px;">
+<%= paginate @rooms %>
+</div>
 
 
 <% @rooms.each do |r| %>
@@ -44,3 +46,6 @@
 
 </div>
 <% end %>
+<div style="margin-top: 10px;">
+<%= paginate @rooms %>
+</div>
