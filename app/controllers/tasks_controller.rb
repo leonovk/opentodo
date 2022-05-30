@@ -7,6 +7,7 @@ class TasksController < ApplicationController
     if task.save
       if params['id'] != nil
         redirect_to current_room_path
+        room = Room.find_by(id: params['id']).update(updated_at: Time.now)      
       else
         redirect_to root_path
       end
