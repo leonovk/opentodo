@@ -13,9 +13,14 @@ class UsersController < ApplicationController
 
   def update
     if params['old_password'] == ''
-      user = User.find_by(id: current_user.id ).update(login: params['login'], name: params['name'])
-      redirect_to root_path
-      message('success')
+      user = User.find_by(id: current_user.id )
+      if user.update(login: params['login'], name: params['name'])
+        redirect_to root_path
+        message('success')
+      else
+        redirect_to root_path
+        message('Произошла какая то ошибка! Мы все пофиксим!')
+      end
     else
       user = User.find_by id: current_user.id
       if user.authenticate(params[:old_password])
@@ -24,7 +29,7 @@ class UsersController < ApplicationController
           message('success')
         else
           redirect_to root_path
-          message('error')
+          message('Произошла какая то ошибка! Мы все пофиксим!')
         end
       else
         redirect_to root_path
