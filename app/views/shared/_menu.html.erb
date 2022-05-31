@@ -10,7 +10,7 @@
           <a class="<%= currently_at(active, 2) %>" href="/rooms" >Комнаты</a>
         </li>
           <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"  href="#" role="button" aria-expanded="false"><%= current_user.login %></a>
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"  href="#" role="button" aria-expanded="false"><%= current_user.name %></a>
     <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="/users/<%= current_user.id %>/edit">Мой профиль</a></li>
       <li><hr class="dropdown-divider"></li>
