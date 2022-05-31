@@ -35,7 +35,7 @@
     <p>Участники:
     <% user.each do |u| %>
     <% i = i + 1 %>
-     <%= u.login %><% if i < user.size %>,<% end %>
+     <%= u.name %><% if i < user.size %>,<% end %>
     <% end %>  
     </p>
     <a href="/rooms/<%= r.id %>" class="btn btn-primary">Открыть</a>

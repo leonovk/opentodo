@@ -19,7 +19,7 @@ class UsersController < ApplicationController
         message('success')
       else
         redirect_to root_path
-        message('Произошла какая то ошибка! Мы все пофиксим!')
+        message('Произошла какая то ошибка!')
       end
     else
       user = User.find_by id: current_user.id
