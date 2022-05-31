@@ -29,7 +29,7 @@ class UsersController < ApplicationController
           message('success')
         else
           redirect_to root_path
-          message('Произошла какая то ошибка! Мы все пофиксим!')
+          message('Произошла какая то ошибка!')
         end
       else
         redirect_to root_path
