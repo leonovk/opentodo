@@ -39,13 +39,11 @@ class TasksController < ApplicationController
   
 
   def status
+
     if params['id'] != '0'
-      room = Room.find_by(id: params['id'])
-      if !room.users.find_by(id: current_user.id).present?
-        return false
-        redirect_to root_path
-      end
+      return false unless room_rights_write(current_user.id, params['id'])
     end
+    
     parameters = []
     not_include = ['authenticity_token', 'get', 'controller', 'action', 'id']
     params.each do |k, v|
