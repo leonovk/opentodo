@@ -39,7 +39,7 @@ class TasksController < ApplicationController
   
 
   def status  
-    return false unless room_rights_write(current_user.id, params['id'])
+    
     parameters = []
     not_include = ['authenticity_token', 'get', 'controller', 'action', 'id']
     params.each do |k, v|
