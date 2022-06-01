@@ -40,7 +40,9 @@ class TasksController < ApplicationController
 
   def status
     if params['id'] != '0'
-      if !room_rights_write(current_user.id, params['id'])
+      room = Room.find_by(id: params['id'])
+      if !room.users.find_by(id: current_user.id).present?
+        return false
         redirect_to root_path
       end
     end
