@@ -42,7 +42,6 @@ class TasksController < ApplicationController
     if params['id'] != '0'
       if !room_rights_write(current_user.id, params['id'])
         redirect_to root_path
-        return false
       end
     end
     parameters = []
