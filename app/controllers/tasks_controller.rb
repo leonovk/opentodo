@@ -1,7 +1,9 @@
 class TasksController < ApplicationController
   include Notifications
   include Rights
+  include MainHandling
   before_action :room_determinant
+  before_action :authorize_chek
   
 
   def create
