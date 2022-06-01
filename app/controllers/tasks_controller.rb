@@ -40,11 +40,7 @@ class TasksController < ApplicationController
 
   def status
 
-    if room_rights_write(current_user.id, params['id']) == false
-      redirect_to root_path
-      return false
-    end
-     
+    if room_rights_write(current_user.id, params['id'])    
     parameters = []
     not_include = ['authenticity_token', 'get', 'controller', 'action', 'id']
     params.each do |k, v|
@@ -71,6 +67,7 @@ class TasksController < ApplicationController
     else
       redirect_to root_path
     end
+  end
   end
   
 
