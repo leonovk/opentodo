@@ -17,6 +17,12 @@ module MainHandling
         redirect_to root_path
       end
     end
+
+    def authorize_chek
+      if !user_signed_in?
+        redirect_to root_path
+      end
+    end
     
   
     def remember(user)

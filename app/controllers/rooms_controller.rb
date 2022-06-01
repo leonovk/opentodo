@@ -1,5 +1,8 @@
 class RoomsController < ApplicationController
   include Notifications
+  include MainHandling
+  include Rights
+
   before_action :authorize_chek
   
 
@@ -50,22 +53,22 @@ class RoomsController < ApplicationController
   def add ## and remove
     user = User.find_by(login: params['login'])
     room = Room.find(params['id'])
-    if current_user.id == room.owner_id and user.present?
+    if rooms_rights_owner(current_user.id, room.id)
       if params['add'].present? and !room.users.where(id: user.id).present?
         rec = Recorder.new(room_id: params['id'], user_id: user.id)
         rec.save
         redirect_to "/rooms/#{params['id']}"
-      end
-      if params['remove'].present?
-        rec = Recorder.where(room_id: room.id, user_id: user.id)
-        rec.each do |r|
-          r.destroy
-        end
+      elsif params['remove'].present?
+        params['remove'].present?
+        rec = Recorder.find_by(room_id: room.id, user_id: user.id)
+        rec.destroy if rec.present?
         redirect_to "/rooms/#{params['id']}"
+      else
+        message('error')
       end
       message('success')
     else
-      message('error')
+      message('Ошибка, у вас нет прав на выполнение данной операции!')
       redirect_to "/rooms/#{params['id']}"
     end
   end
@@ -73,27 +76,18 @@ class RoomsController < ApplicationController
   def destroy
     room = Room.find(params['id'])
       if current_user.id == room.owner_id     
-        rec = Recorder.where(room_id: room.id)
-        rec.each do |r|
-          r.destroy
-        end
         room.destroy
         redirect_to rooms_path
+        message('Комната была удалена!')
       else
-        rec = Recorder.where(room_id: room.id, user_id: current_user.id)
-        rec.each do |r|
-          r.destroy
-        end
+        rec = Recorder.find_by(room_id: room.id, user_id: current_user.id)
+        rec.destroy
+        message('Вы покинули комнату!')
         redirect_to rooms_path
       end
   end
 
   private
-  def authorize_chek
-    if !user_signed_in?
-      redirect_to root_path
-    end
-  end
 
   def room_rights(room_id)
     room = Room.find(room_id)
