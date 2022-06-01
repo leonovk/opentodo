@@ -53,8 +53,8 @@ class RoomsController < ApplicationController
   def add ## and remove
     user = User.find_by(login: params['login'])
     room = Room.find(params['id'])
-    if rooms_rights_owner(current_user.id, room.id)
-      if params['add'].present? and !room.users.where(id: user.id).present?
+    if rooms_rights_owner(current_user.id, room.id) and user.present?
+      if params['add'].present? and !room.users.find_by(id: user.id).present?
         rec = Recorder.new(room_id: params['id'], user_id: user.id)
         rec.save
         redirect_to "/rooms/#{params['id']}"

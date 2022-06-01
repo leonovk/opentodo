@@ -38,8 +38,13 @@ class TasksController < ApplicationController
   end
   
 
-  def status  
-    
+  def status
+
+    if room_rights_write(current_user.id, params['id']) == false
+      redirect_to root_path
+      return false
+    end
+     
     parameters = []
     not_include = ['authenticity_token', 'get', 'controller', 'action', 'id']
     params.each do |k, v|
@@ -47,31 +52,25 @@ class TasksController < ApplicationController
         parameters << k
       end
     end
-
     for id in parameters do
       task = Task.find(id)
       if params['get'] == '1'
         task.destroy
-      elsif params['get'] == '2'
-        
+      elsif params['get'] == '2'  
         if task.status == true
           task.update(status: '0')
         else
           task.update(status: '1') 
         end
-
       else
         message('error')
       end
     end
-
     if params['id'] != '0'
       redirect_to "/rooms/#{params['id']}"
     else
       redirect_to root_path
     end
-    
-    
   end
   
 
