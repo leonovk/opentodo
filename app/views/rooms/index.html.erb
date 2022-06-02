@@ -41,7 +41,7 @@
     <a href="/rooms/<%= r.id %>" class="btn btn-primary">Открыть</a>
   </div>
     <div class="card-footer text-muted">
-    <%= l(r.updated_at, format: "%d.%m.%Y | %H:%M") %>
+    <%= distance_of_time_in_words(r.updated_at, Time.now) %>
   </div>
 
 </div>
