@@ -26,7 +26,7 @@
     <% end %>
   <div class="collapse" id="collapseExample<%= tasks.id %>">
   <div class="card card-body">
-    <p><%= sanitize tasks.description.to_s.gsub(/\n/, "<br/>") %>
+    <p><%= sanitize tasks.description.to_s.gsub(/\n/, "<br>"), tags: %w(br) %>
         <div class="text-muted">
     <%= l(tasks.updated_at, format: "%d.%m.%Y | %H:%M") %><a href="/tasks/<%= tasks.id %>/edit"><span class="badge bg-secondary rounded-pill" style="margin-left:5px;">Изменить</span></a>
         </div>
