@@ -15,6 +15,7 @@ gem "bootsnap", require: false
 gem 'bcrypt'
 gem 'sassc-rails'
 gem 'kaminari'
+gem 'rails-i18n'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
