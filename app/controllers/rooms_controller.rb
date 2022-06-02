@@ -56,13 +56,10 @@ class RoomsController < ApplicationController
     if rooms_rights_owner(current_user.id, room.id) and user.present?
       if params['add'].present? and !room.users.find_by(id: user.id).present?
         rec = Recorder.new(room_id: params['id'], user_id: user.id)
-        rec.save
-        redirect_to "/rooms/#{params['id']}"
-      elsif params['remove'].present?
-        params['remove'].present?
+        redirect_to "/rooms/#{params['id']}" if rec.save
+      elsif params['remove'].present? and room.users.find_by(id: user.id).present?
         rec = Recorder.find_by(room_id: room.id, user_id: user.id)
-        rec.destroy if rec.present?
-        redirect_to "/rooms/#{params['id']}"
+        redirect_to "/rooms/#{params['id']}" if rec.destroy
       else
         message('error')
       end
