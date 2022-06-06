@@ -49,7 +49,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       redirect_to root_path
-      flash[:class] = "alert alert-success"
+      flash[:class] = "alert alert-success alert-dismissible fade show"
       flash[:text] = "Добро пожаловать, #{@user.name}!"
     else
       message('error')
