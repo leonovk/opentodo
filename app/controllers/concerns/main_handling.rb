@@ -40,5 +40,19 @@ module MainHandling
     def have_room?
       @room.present?
     end
+
+    def login_trimer(login)
+      l = login.gsub(' ','')
+    end
+    
+    def valid_password?(password)
+      if password.size >= 6
+        true
+      else
+        false
+      end
+    end
+    
+
   end
 end

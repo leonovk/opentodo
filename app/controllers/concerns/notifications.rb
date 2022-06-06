@@ -4,13 +4,13 @@ module Notifications
   included do
     def message(string)
       if string == 'error'
-        flash[:class] = "alert alert-danger"
+        flash[:class] = "alert alert-danger alert-dismissible fade show"
         flash[:text] = 'Ошибка! Вы что то делаете не правильно, попробуйте еще раз!'
       elsif string == 'success'
-        flash[:class] = "alert alert-success"
+        flash[:class] = "alert alert-success alert-dismissible fade show"
         flash[:text] = 'Успешно!'
       else
-        flash[:class] = "alert alert-warning"
+        flash[:class] = "alert alert-warning alert-dismissible fade show"
         flash[:text] = string
       end
     end

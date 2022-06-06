@@ -20,6 +20,7 @@
   <% if flash[:class].present? %>
   <div class="<%= flash[:class] %>" role="alert" style="margin-top: 10px;">
   <%= flash[:text] %>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   <% end %>
 

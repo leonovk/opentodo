@@ -30,7 +30,7 @@
   <div class="row mb-3">
     <label for="inputPassword3" class="col-sm-2 col-form-label">Новый пароль</label>
     <div class="col-sm-10">
-      <%= u.password_field :password, type: 'password', class: 'form-control', id: 'inputPassword3', placeholder: 'Новый пароль'%>
+      <%= u.password_field :password, type: 'password', class: 'form-control', id: 'inputPassword3', placeholder: 'Новый пароль, минимум 6 символов!'%>
     </div>
   </div>
 
@@ -43,3 +43,4 @@
 
 <%= u.submit "Сохранить", class: 'btn btn-primary' %>
 <% end %> 
+

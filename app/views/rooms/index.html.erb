@@ -22,7 +22,10 @@
 
 <% @rooms.each do |r| %>
 <div class="card" style="margin-top: 10px;">
-  <h5 class="card-header"><%= r.title %></h5>
+  <h5 class="card-header"><%= r.title %>
+
+
+</h5>
   <div class="card-body">
     <p class="card-text"><%= r.description %></p>
     <% user = r.users %>
@@ -33,7 +36,11 @@
      <%= u.name %><% if i < user.size %>,<% end %>
     <% end %>  
     </p>
-    <a href="/rooms/<%= r.id %>" class="btn btn-primary">Открыть</a>
+    <% if r.tasks.size > 0 %>
+    <p>Тасков: <%= r.tasks.size %></p>
+    <% end %>
+    <a href="/rooms/<%= r.id %>" class="btn btn-primary">Открыть</a><span class="badge text-bg-secondary">4</span>
+
   </div>
     <div class="card-footer text-muted">
     <%= distance_of_time_in_words(r.updated_at, Time.now) %> назад

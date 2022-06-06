@@ -17,7 +17,7 @@ class RoomsController < ApplicationController
       rec = Recorder.new(room_id: r.id, user_id: current_user.id)
       rec.save
       redirect_to rooms_path
-      flash[:class] = "alert alert-success"
+      flash[:class] = "alert alert-success alert-dismissible fade show"
       flash[:text] = 'Комната успешно создана!'
     else
       redirect_to rooms_path

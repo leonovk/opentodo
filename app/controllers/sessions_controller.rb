@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_path
     else
-      flash[:class] = "alert alert-danger"
+      flash[:class] = "alert alert-danger alert-dismissible fade show"
       flash[:text] = 'Ошибка авторизации!'
       redirect_to new_session_path
     end
