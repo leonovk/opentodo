@@ -8,7 +8,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-
+    if params['id'].to_i != current_user.id
+      redirect_to root_path
+    end
   end
 
   def update

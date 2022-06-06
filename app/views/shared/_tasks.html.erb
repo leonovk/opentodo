@@ -18,13 +18,13 @@
 <% ##Начало цикла %>
 <li class="list-group-item">
   <input class="form-check-input me-1" type="checkbox" value="isset" name="<%= tasks.id %>">
-   <a data-bs-toggle="collapse" href="#collapseExample<%= tasks.id %>" role="button" aria-expanded="false" aria-controls="collapseExample" style="color: black;text-decoration: none;">
+   <a data-bs-toggle="collapse" href="#collapse<%= tasks.id %>" role="button" aria-expanded="false" aria-controls="collapse" style="color: black;text-decoration: none;">
     <%= tasks.title %>
   </a>
       <% if tasks.status == true %>
     <span class="badge bg-primary rounded-pill">В работе</span>
     <% end %>
-  <div class="collapse" id="collapseExample<%= tasks.id %>">
+  <div class="collapse" id="collapse<%= tasks.id %>">
   <div class="card card-body">
     <p><%= sanitize tasks.description.to_s.gsub(/\n/, "<br>"), tags: %w(br) %>
         <div class="text-muted">
