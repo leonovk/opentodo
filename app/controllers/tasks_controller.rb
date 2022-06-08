@@ -41,17 +41,12 @@ class TasksController < ApplicationController
   
 
   def status
-
     if params['id'] != '0'
       return false unless room_rights_write(current_user.id, params['id'])
     end
-    
     parameters = []
-    not_include = ['authenticity_token', 'get', 'controller', 'action', 'id']
-    params.each do |k, v|
-      if !not_include.include? k
-        parameters << k
-      end
+    params['task'].each do |k, v|
+      parameters << k
     end
     for id in parameters do
       task = Task.find(id)
