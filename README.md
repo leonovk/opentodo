@@ -1,5 +1,5 @@
 
-## OpenToDo
+## OpenTodo
 
 ### Description
 
