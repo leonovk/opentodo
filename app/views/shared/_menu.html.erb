@@ -1,33 +1,40 @@
 <% active = (yield(:current_page)) %> 
-    <nav class="nav" style="margin-top: 5px;">
-    <div class="container">
-      <ul class="nav nav-tabs">
+<nav class="navbar navbar-expand-lg navbar-dark mb-1" style="background-color: #496fdc;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">OpenTodo</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="<%= currently_at(active, 1) %>" href="/" >Главная</a>
+          <a class="<%= currently_at(active, 1) %>" aria-current="page" href="/">Главная</a>
         </li>
-  <% if user_signed_in? %>
+        <% if user_signed_in? %>
         <li class="nav-item">
-          <a class="<%= currently_at(active, 2) %>" href="/rooms" >Комнаты</a>
+          <a class="<%= currently_at(active, 2) %>" href="/rooms">Комнаты</a>
         </li>
           <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"  href="#" role="button" aria-expanded="false"><%= current_user.name %></a>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="/users/<%= current_user.id %>/edit">Мой профиль</a></li>
-      <li><hr class="dropdown-divider"></li>
-      <form action="/session" method="delete">
-      <li><button type="submit" class="dropdown-item">Выйти</button></li>
-      </form>
-    </ul>
-  </li>
-  <% else %>
-        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= current_user.name %>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+            <li><a class="dropdown-item" href="/users/<%= current_user.id %>/edit">Мой профиль</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <form action="/session" method="delete">
+            <li><button type="submit" class="dropdown-item">Выйти</button></li>
+            </form>
+          </ul>
+        </li>
+        <% else %>
+                <li class="nav-item">
            <a class="<%= currently_at(active, 3) %>" href="/users/new" >Регистрация</a>
         </li>
         <li class="nav-item">
           <a class="<%= currently_at(active, 4) %>" href="/session/new">Войти</a>
         </li>
+        <% end %>
       </ul>
-  <% end %>
-  </div>
-  </nav>
-
+    </div>
+  </div> 
+</nav>
