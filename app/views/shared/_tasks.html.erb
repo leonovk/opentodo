@@ -11,31 +11,11 @@
 <%= form_with url: "/rooms/tasks/status/#{room_id}", method: :post do |form| %>
 <% ##Начало формы %>
 
-<ul class="list-group">
 
+<ul class="list-group">
 <% ##Начало цикла %>
 <% @tasks.each do |tasks| %>
-<% ##Начало цикла %>
-<li class="list-group-item">
-  <input class="form-check-input me-1" type="checkbox" value="isset" name="<%= tasks.id %>">
-   <a data-bs-toggle="collapse" href="#collapse<%= tasks.id %>" role="button" aria-expanded="false" aria-controls="collapse" style="color: black;text-decoration: none;">
-    <%= tasks.title %>
-  </a>
-      <% if tasks.status == true %>
-    <span class="badge bg-primary rounded-pill">В работе</span>
-    <% end %>
-  <div class="collapse" id="collapse<%= tasks.id %>">
-  <div class="card card-body">
-    <p><%= sanitize tasks.description.to_s.gsub(/\n/, "<br>"), tags: %w(br) %>
-        <div class="text-muted">
-    <%= l(tasks.updated_at, format: "%d.%m.%Y | %H:%M") %><a href="/tasks/<%= tasks.id %>/edit"><span class="badge bg-secondary rounded-pill" style="margin-left:5px;">Изменить</span></a>
-        </div>
-
-  </div>
-</div>
-</li>
-
-<% ##Конец цикла %>
+<%= render "shared/task", task: tasks %>
 <% end %>
 <% ##Конец цикла %>
 </ul>

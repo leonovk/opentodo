@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
   resources :tasks, only: [:edit, :update]
   
- 
   post "/rooms/:id", to: "tasks#create"
   post "/rooms/:id/add/", to: "rooms#add"
   delete "/rooms/:id/delete/", to: "rooms#destroy"
