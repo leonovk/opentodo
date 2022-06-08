@@ -18,6 +18,5 @@ class ApplicationController < ActionController::Base
     current_user.present?
   end
 
-
   helper_method :current_user, :user_signed_in?, :have_room?
 end
