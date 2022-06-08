@@ -13,6 +13,7 @@
     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"  href="#" role="button" aria-expanded="false"><%= current_user.name %></a>
     <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="/users/<%= current_user.id %>/edit">Мой профиль</a></li>
+      <li><a class="dropdown-item" href="/faq">FAQ</a></li>
       <li><hr class="dropdown-divider"></li>
       <form action="/session" method="delete">
       <li><button type="submit" class="dropdown-item">Выйти</button></li>

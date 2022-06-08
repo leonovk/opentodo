@@ -1,4 +1,3 @@
-
 ## OpenTodo
 
 ### Description
