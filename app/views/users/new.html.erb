@@ -8,7 +8,7 @@
   <div class="row mb-3">
     <label for="inputEmail3" class="col-sm-2 col-form-label">Логин</label>
     <div class="col-sm-10">
-      <%= u.text_field :login, class: 'form-control', id: 'inputEmail3', placeholder: 'Ваш уникальный логин'%>
+      <%= u.text_field :login, class: 'form-control', id: 'inputEmail3', placeholder: 'Ваш логин'%>
     </div>
   </div>
 
@@ -33,7 +33,17 @@
     </div>
   </div>
 <%= u.submit "Регистрация", class: 'btn btn-primary' %>
+  <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse">
+    Помощь
+  </button>
 <% end %> 
+
+<div class="collapse mt-2" id="collapse">
+  <div class="card card-body">
+  Ваш логин, это ваш уникальный юзернейм. Он будет использоваться для вашей идентификации другими пользователями.
+  Вы можете выбрать абсолютно любой пароль, в этом плане я очень либерален и считаю, что каждый сам отвечает за свою безопсность.
+  </div>
+</div>
 
 
 

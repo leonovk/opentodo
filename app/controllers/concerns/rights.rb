@@ -21,6 +21,14 @@ module Rights
         false
       end   
     end
+    
+    def room_rights(room_id)
+      room = Room.find(room_id)
+      if room.owner_id != current_user.id
+        message('error')
+        redirect_to "/rooms/#{room_id}"
+      end    
+    end
   
   end
 end

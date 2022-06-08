@@ -9,11 +9,7 @@ class AdminsController < ApplicationController
  
   private
   def admin_rights
-    if user_signed_in?
-      if current_user.admin_status == false
-        redirect_to root_path
-      end
-    else
+    if !user_signed_in? or current_user.admin_status == false
       redirect_to root_path
     end   
   end

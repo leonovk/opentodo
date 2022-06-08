@@ -15,10 +15,8 @@ class RoomsController < ApplicationController
     r = Room.new(title: params['title'], owner_id: current_user.id)
     if r.save
       rec = Recorder.new(room_id: r.id, user_id: current_user.id)
-      rec.save
-      redirect_to rooms_path
-      flash[:class] = "alert alert-success alert-dismissible fade show"
-      flash[:text] = 'Комната успешно создана!'
+      redirect_to rooms_path if rec.save
+      message('success')
     else
       redirect_to rooms_path
       message('error')
@@ -50,7 +48,7 @@ class RoomsController < ApplicationController
     end
   end
   
-  def add ## and remove
+  def add ## and remove users in room
     user = User.find_by(login: params['login'])
     room = Room.find(params['id'])
     if rooms_rights_owner(current_user.id, room.id) and user.present?
@@ -82,16 +80,6 @@ class RoomsController < ApplicationController
         message('Вы покинули комнату!')
         redirect_to rooms_path
       end
-  end
-
-  private
-
-  def room_rights(room_id)
-    room = Room.find(room_id)
-    if room.owner_id != current_user.id
-      message('error')
-      redirect_to "/rooms/#{room_id}"
-    end    
   end
 
 end

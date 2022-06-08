@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  include Notifications
   before_action :require_no_signed_in, only: :new
   before_action :require_signed?, only: :destroy
 
@@ -12,8 +13,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_path
     else
-      flash[:class] = "alert alert-danger alert-dismissible fade show"
-      flash[:text] = 'Ошибка авторизации!'
+      message('Ошибка авторизации! Возможно вы ввели нвереный пароль!')
       redirect_to new_session_path
     end
   end
