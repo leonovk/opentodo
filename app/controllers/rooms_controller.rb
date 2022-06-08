@@ -63,7 +63,7 @@ class RoomsController < ApplicationController
       end
       message('success')
     else
-      message('Ошибка, у вас нет прав на выполнение данной операции!')
+      message('Ошибка!')
       redirect_to "/rooms/#{params['id']}"
     end
   end
