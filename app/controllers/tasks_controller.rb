@@ -44,6 +44,7 @@ class TasksController < ApplicationController
     if params['id'] != '0'
       return false unless room_rights_write(current_user.id, params['id'])
     end
+    return false if params['task'] == nil
     parameters = []
     params['task'].each do |k, v|
       parameters << k
