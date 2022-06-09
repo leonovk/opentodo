@@ -52,16 +52,18 @@ class RoomsController < ApplicationController
     user = User.find_by(login: params['login'])
     room = Room.find(params['id'])
     if rooms_rights_owner(current_user.id, room.id) and user.present?
-      if params['add'].present? and !room.users.find_by(id: user.id).present?
+      if params['add'].present? and !room.users.find_by(id: user.id).present? and inviteble?(user.id)
         rec = Recorder.new(room_id: params['id'], user_id: user.id)
         redirect_to "/rooms/#{params['id']}" if rec.save
+        message('success')
       elsif params['remove'].present? and room.users.find_by(id: user.id).present?
         rec = Recorder.find_by(room_id: room.id, user_id: user.id)
         redirect_to "/rooms/#{params['id']}" if rec.destroy
+        message('success')
       else
-        message('error')
+        redirect_to "/rooms/#{params['id']}"
+        message('Пользователь запретил, приглашать себя в комнаты')
       end
-      message('success')
     else
       message('Ошибка!')
       redirect_to "/rooms/#{params['id']}"

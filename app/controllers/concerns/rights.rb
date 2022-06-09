@@ -13,6 +13,15 @@ module Rights
       end
     end
 
+    def inviteble?(user_id)
+      user = User.find_by(id: user_id)
+      if user.invite_status == true
+        false
+      else
+        true
+      end
+    end
+
     def room_rights_write(user_id, room_id)
       room = Room.find_by(id: room_id)
       if room.users.find_by(id: user_id).present?

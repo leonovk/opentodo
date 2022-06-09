@@ -14,9 +14,10 @@ class UsersController < ApplicationController
   end
 
   def update
+    params['invites'] = 0 if params['invites'] == nil
     if params['old_password'] == ''
       user = User.find_by(id: current_user.id )
-      if user.update(login: login_trimer(params['login']), name: params['name'])
+      if user.update(login: login_trimer(params['login']), name: params['name'], invite_status: params['invites'])
         redirect_to root_path
         message('success')
       else
@@ -26,7 +27,7 @@ class UsersController < ApplicationController
     else
       user = User.find_by id: current_user.id
       if user.authenticate(params[:old_password]) and valid_password?(params['password'])
-        if user.update(login: params['login'], name: params['name'], password: params['password'], password_confirmation: params['password_confirmation'])
+        if user.update(login: params['login'], name: params['name'], invite_status: params['invites'], password: params['password'], password_confirmation: params['password_confirmation'])
           redirect_to root_path
           message('success')
         else
