@@ -90,7 +90,7 @@ class TasksController < ApplicationController
         end
       else
         rec = Recorder.find_by(user_id: current_user.id, room_id: task.room_id)
-        if !rec.present?
+        unless rec.present?
           redirect_to root_path
         end
       end
