@@ -4,8 +4,8 @@
 
 
 <%= turbo_frame_tag "frame_edit" do %>
-<h1><%= link_to "#{@room.title}", edit_room_path(@room), style: "color:black;text-decoration:none;"%></h1>
-<p class="h5"><%= link_to "#{@room.description}", edit_room_path(@room), style: "color:black;text-decoration:none;"%></p>
+<h1 class="display-5"><%= link_to "#{@room.title}", edit_room_path(@room), style: "color:black;text-decoration:none;"%></h1>
+<p class="lead"><%= link_to "#{@room.description}", edit_room_path(@room), style: "color:black;text-decoration:none;"%></p>
 <% end %>
 
 
