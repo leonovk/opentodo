@@ -2,7 +2,6 @@
 <% provide :current_page, 'Комнаты' %>
 
 
-
 <%= turbo_frame_tag "frame_edit" do %>
 <h1 class="display-5"><%= link_to "#{@room.title}", edit_room_path(@room), style: "color:black;text-decoration:none;"%></h1>
 <p class="lead"><%= link_to "#{@room.description}", edit_room_path(@room), style: "color:black;text-decoration:none;"%></p>
@@ -10,32 +9,14 @@
 
 
 
-
-
-
-<div class="btn-group" role="group" aria-label="Basic mixed styles ">
-<form>
-<div class="btn-group dropend">
-  <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-    Параметры
-  </a>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#Modal">Участники</a></li>
-    <li><a class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#Modal1"><%= delete_or_exit(@room.owner_id) %></a></li>
-  </ul>
-</div>
-</form>
-</div>
-
+<button type="button" class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#Modal">Участники</button>
+<button type="button" class="btn btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#Modal1"><%= delete_or_exit(@room.owner_id) %></button>
 
 
 <div style="margin-top: 20px;">
-
 <%= render 'shared/tasks'%>
 <%= render 'shared/taskform' %>
-
 </div>
-
 
 
 
