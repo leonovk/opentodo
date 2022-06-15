@@ -4,12 +4,7 @@
     <p class="card-text"><%= r.description %></p>
     <% user = r.users %>
     <% i = 0 %>
-    <p>Участники:
-    <% user.each do |u| %>
-    <% i = i + 1 %>
-     <%= u.name %><% if i < user.size %>,<% end %>
-    <% end %>  
-    </p>
+    <p>Участники: <%= members(r.id) %></p>
     <% if r.tasks.size > 0 %>
     <p>Тасков: <%= r.tasks.size %></p>
     <% end %>
