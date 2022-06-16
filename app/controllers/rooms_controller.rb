@@ -62,7 +62,7 @@ class RoomsController < ApplicationController
         message('success')
       else
         redirect_to "/rooms/#{params['id']}"
-        message('Пользователь запретил, приглашать себя в комнаты')
+        message('Ошибка!')
       end
     else
       message('Ошибка!')
