@@ -8,16 +8,19 @@ class TasksController < ApplicationController
 
   def create
     task = Task.new(title: params['task'], status: 0, user_id: current_user.id, room_id: @room_id)
+    Room.find_by(id: params['id']).update(updated_at: Time.now) if params['id'] != nil
     if task.save
-      if params['id'] != nil
-        redirect_to room_path
-        Room.find_by(id: params['id']).update(updated_at: Time.now)      
-      else
-        redirect_to root_path
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.append(:tasks_id, partial: "shared/task",
+          locals: { task: task })
+        end
+        if params['id'] != nil
+          format.html { redirect_to "/rooms/#{task.room_id}" }
+        else
+          format.html { redirect_to root_path }
+        end
       end
-    else
-      redirect_to root_path
-      message('error')
     end
   end
 

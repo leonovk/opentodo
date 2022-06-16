@@ -1,5 +1,5 @@
 <div style="margin-top:10px;">
-<%= form_with model: @task do |t| %>
+<%= form_with(model: @task, data: { controller: "reset", action: "turbo:submit-end->reset#reset"}) do |f| %>
 
 
   <div class="input-group mb-3">
