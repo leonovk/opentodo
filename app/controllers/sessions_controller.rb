@@ -21,6 +21,6 @@ class SessionsController < ApplicationController
   def destroy
     forget current_user
     session.delete :user_id
-    redirect_to root_path
+    redirect_to root_path, status: :see_other
   end
 end

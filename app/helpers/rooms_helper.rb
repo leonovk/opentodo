@@ -17,7 +17,7 @@ module RoomsHelper
       if i < users.size
         b << ', '
       end
-      i = i + 1
+      i += 1
     end
     return b.join('')
   end
