@@ -24,6 +24,7 @@ module Rights
 
     def room_rights_write(user_id, room_id)
       room = Room.find_by(id: room_id)
+      return false unless room.present?
       if room.users.find_by(id: user_id).present?
         true
       else

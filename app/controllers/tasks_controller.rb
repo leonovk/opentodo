@@ -8,7 +8,8 @@ class TasksController < ApplicationController
 
   def create
     task = Task.new(title: params['task'], status: 0, user_id: current_user.id, room_id: @room_id)
-    Room.find_by(id: params['id']).update(updated_at: Time.now) if params['id'] != nil
+    room = Room.find_by(id: params['id'])
+    room.update(updated_at: Time.now) if params['id'] != nil and room.present?
     if task.save
       respond_to do |format|
         format.turbo_stream do
@@ -80,7 +81,12 @@ class TasksController < ApplicationController
     if params['id'] == nil
       @room_id = 0
     else
-      @room_id = params['id']
+      chek_room = Room.find_by(id: params['id'])
+      if chek_room.present?
+        @room_id = params['id']
+      else
+        @room_id = 0
+      end
     end
   end
 

@@ -4,6 +4,7 @@ class RoomsController < ApplicationController
   include Rights
 
   before_action :authorize_chek
+  before_action :room_checker, only: [:show]
   
 
   def index
@@ -59,6 +60,7 @@ class RoomsController < ApplicationController
       elsif params['remove'].present? and room.users.find_by(id: user.id).present?
         rec = Recorder.find_by(room_id: room.id, user_id: user.id)
         redirect_to "/rooms/#{params['id']}" if rec.destroy
+        room.destroy if rooms_rights_owner(current_user.id, room.id)
         message('success')
       else
         redirect_to "/rooms/#{params['id']}"
@@ -84,4 +86,12 @@ class RoomsController < ApplicationController
       end
   end
 
+  private
+  def room_checker
+    room = Room.find_by id: params['id']
+    unless room.present?
+      redirect_to rooms_path
+    end
+  end
+  
 end
