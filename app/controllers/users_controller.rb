@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  include Notifications
-  include MainHandling
   before_action :require_no_signed_in, only: [:new, :create]
   before_action :require_signed?, only: [:edit, :update]
 

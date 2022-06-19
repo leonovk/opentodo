@@ -1,10 +1,6 @@
 class RoomsController < ApplicationController
-  include Notifications
-  include MainHandling
-  include Rights
-
   before_action :authorize_chek
-  before_action :room_checker, only: [:show]
+  before_action :room_checker, only: [:show, :add, :destroy]
   
 
   def index

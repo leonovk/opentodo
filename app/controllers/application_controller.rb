@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   include MainHandling
+  include Notifications
+  include Rights
   
   private
   def current_user

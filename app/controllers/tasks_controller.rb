@@ -1,13 +1,10 @@
 class TasksController < ApplicationController
-  include Notifications
-  include Rights
-  include MainHandling
   before_action :room_determinant
   before_action :authorize_chek
   
 
   def create
-    task = Task.new(title: params['task'], status: 0, user_id: current_user.id, room_id: @room_id)
+    task = Task.new(title: params['task'], user_id: current_user.id, room_id: @room_id)
     room = Room.find_by(id: params['id'])
     room.update(updated_at: Time.now) if params['id'] != nil and room.present?
     if task.save
@@ -58,10 +55,10 @@ class TasksController < ApplicationController
       if params['get'] == '1'
         task.destroy 
       elsif params['get'] == '2'  
-        if task.status == true
-          task.update(status: '0') 
+        if task.worker == current_user.name
+          task.update(worker: nil) 
         else
-          task.update(status: '1') 
+          task.update(worker: current_user.name) 
         end
       else
         message('error')

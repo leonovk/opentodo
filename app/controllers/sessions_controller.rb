@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  include Notifications
   before_action :require_no_signed_in, only: :new
   before_action :require_signed?, only: :destroy
 

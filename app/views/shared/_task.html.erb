@@ -3,16 +3,13 @@
    <a data-bs-toggle="collapse" href="#collapse<%= task.id %>" role="button" aria-expanded="false" aria-controls="collapse" style="color: black;text-decoration: none;">
     <%= task.title %>
   </a>
-      <% if task.status == true %>
-    <span class="badge bg-primary rounded-pill">В работе</span>
-    <% end %>
+    <span class="badge bg-primary rounded-pill"><%= task.worker %></span>
   <div class="collapse" id="collapse<%= task.id %>">
   <div class="card card-body">
     <p><%= sanitize task.description.to_s.gsub(/\n/, "<br>"), tags: %w(br) %>
         <div class="text-muted">
     <%= l(task.updated_at, format: "%d.%m.%Y | %H:%M") %><a href="/tasks/<%= task.id %>/edit"><span class="badge bg-secondary rounded-pill" style="margin-left:5px;">Изменить</span></a>
         </div>
-
   </div>
 </div>
 </li>
