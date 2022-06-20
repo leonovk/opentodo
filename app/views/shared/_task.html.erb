@@ -3,7 +3,7 @@
    <a data-bs-toggle="collapse" href="#collapse<%= task.id %>" role="button" aria-expanded="false" aria-controls="collapse" style="color: black;text-decoration: none;">
     <%= task.title %>
   </a>
-    <span class="badge bg-primary rounded-pill"><%= status(task.id) %></span>
+    <span class="badge bg-primary rounded-pill"><%= status(task.room_id, task.worker) %></span>
   <div class="collapse" id="collapse<%= task.id %>">
   <div class="card card-body">
     <p><%= sanitize task.description.to_s.gsub(/\n/, "<br>"), tags: %w(br) %>
