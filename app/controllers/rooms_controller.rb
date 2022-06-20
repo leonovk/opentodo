@@ -56,7 +56,7 @@ class RoomsController < ApplicationController
       elsif params['remove'].present? and room.users.find_by(id: user.id).present?
         rec = Recorder.find_by(room_id: room.id, user_id: user.id)
         redirect_to "/rooms/#{params['id']}" if rec.destroy
-        room.destroy if rooms_rights_owner(current_user.id, room.id)
+        room.destroy if rooms_rights_owner(current_user.id, room.id) and current_user.id == user.id
         message('success')
       else
         redirect_to "/rooms/#{params['id']}"
