@@ -11,6 +11,9 @@
 <% ##Начало формы %>
 
 
+
+<%= turbo_stream_from :tasks %>
+
 <ul class="list-group" id="tasks">
 <%= render partial: "shared/task", collection: @tasks %>
 </ul>
