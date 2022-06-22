@@ -10,9 +10,9 @@
 <%= form_with url: "/rooms/tasks/status/#{room_id}", method: :post do |form| %>
 <% ##Начало формы %>
 
+<% channel = stream_help(room_id) %>
 
-
-<%= turbo_stream_from :tasks %>
+<%= turbo_stream_from "#{channel}" %>
 
 <ul class="list-group" id="tasks">
 <%= render partial: "shared/task", collection: @tasks %>

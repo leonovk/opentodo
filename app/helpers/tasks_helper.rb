@@ -10,4 +10,13 @@ module TasksHelper
     end
   end
 
+  def stream_help(room_id)
+    if room_id != '0'
+      channel = "tasks#{room_id}"
+    else
+      channel = "user#{current_user.id}"
+    end
+  end
+  
+
 end
