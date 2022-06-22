@@ -2,12 +2,12 @@
 
 one:
   title: MyString
-  status: false
+  worker: String
   user_id: 1
   room_id: 1
 
 two:
   title: MyString
-  status: false
+  worker: String
   user_id: 1
   room_id: 1

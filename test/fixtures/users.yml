@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  login: MyString
+  login: MyString1
   name: MyString
   password_digest: MyString
 
 two:
-  login: MyString
+  login: MyString2
   name: MyString
   password_digest: MyString

@@ -2,8 +2,8 @@
 
 one:
   title: MyString
-  user_id: 1
+  owner_id: 1
 
 two:
   title: MyString
-  user_id: 1
+  owner_id: 1
