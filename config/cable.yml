@@ -1,6 +1,6 @@
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  url: redis://opentodo.ru:6379/1
 
 development:
   adapter: async
