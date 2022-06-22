@@ -10,7 +10,7 @@ class TasksController < ApplicationController
     if task.save
       respond_to do |format|
         format.turbo_stream do
-          render turbo_stream: turbo_stream.append(:tasks_id, partial: "shared/task",
+          render turbo_stream: turbo_stream.append(:tasks, partial: "shared/task",
           locals: { task: task })
         end
         if params['id'] != nil

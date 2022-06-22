@@ -1,7 +1,8 @@
 require "test_helper"
 
 class RoomTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should not save without title" do
+    item = Room.new
+    assert_not item.save, "Saved without a title"
+  end
 end

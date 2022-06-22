@@ -1,6 +1,5 @@
 <div style="margin-top: 10px;">
 
-
 <% if have_room? %>
 <% room_id = @room.id %>
 <% else %>
@@ -12,7 +11,11 @@
 <% ##Начало формы %>
 
 
-<ul class="list-group" id="tasks_id">
+
+<%= turbo_stream_from :tasks %>
+
+
+<ul class="list-group" id="tasks">
 <%= render partial: "shared/task", collection: @tasks %>
 </ul>
 

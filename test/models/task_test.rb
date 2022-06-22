@@ -1,8 +1,8 @@
 require "test_helper"
 
 class TaskTest < ActiveSupport::TestCase
-  test "should not save task without title" do
-    task = Task.new
-    assert_not task.save, "Saved the task without a title"
+  test "should not save without title" do
+    item = Task.new
+    assert_not item.save, "Saved without a title"
   end
 end
