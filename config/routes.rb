@@ -16,5 +16,4 @@ Rails.application.routes.draw do
   get "/admin", to: "admins#index" 
   root 'pages#index'
   get "/faq", to: "pages#faq"
-
 end
