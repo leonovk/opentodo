@@ -3,7 +3,7 @@ class Task < ApplicationRecord
   belongs_to :room ,optional: true
   validates :title, presence: true
   after_create_commit :broadcast
-
+  private
   def broadcast
     if room_id != 0
       channel = "tasks#{room_id}"

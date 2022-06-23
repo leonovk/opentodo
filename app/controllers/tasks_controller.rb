@@ -4,6 +4,7 @@ class TasksController < ApplicationController
   
 
   def create
+    return false unless room_rights_write(current_user.id, params['id'])
     task = Task.new(title: params['task'], user_id: current_user.id, room_id: @room_id)
     room = Room.find_by(id: params['id'])
     room.update(updated_at: Time.now) if params['id'] != nil and room.present?
@@ -42,9 +43,7 @@ class TasksController < ApplicationController
   
 
   def status
-    if params['id'] != '0'
-      return false unless room_rights_write(current_user.id, params['id'])
-    end
+    return false unless room_rights_write(current_user.id, params['id'])
     return false if params['task'] == nil
     parameters = []
     params['task'].each do |k, v|
