@@ -3,8 +3,8 @@
 
 
 <%= turbo_frame_tag "frame_edit" do %>
-<h1 class="display-5"><%= link_to "#{@room.title}", edit_room_path(@room), style: "color:black;text-decoration:none;"%></h1>
-<p class="lead"><%= link_to "#{@room.description}", edit_room_path(@room), style: "color:black;text-decoration:none;"%></p>
+<h1 class="display-5"><%= link_to "#{@room.title.truncate(50, separator: /\s/)}", edit_room_path(@room), style: "color:black;text-decoration:none;"%></h1>
+<p class="lead"><%= link_to "#{word_trim(@room.description)}", edit_room_path(@room), style: "color:black;text-decoration:none;"%></p>
 <% end %>
 
 
@@ -20,7 +20,7 @@
 
 
 
-<!-- Modal -->
+<!-- Modal1 -->
 <div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -54,7 +54,7 @@
   </div>
 </div>
 
-
+<!-- Modal2 -->
 <div class="modal fade" id="Modal1" tabindex="-1" aria-labelledby="ModalLabel1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

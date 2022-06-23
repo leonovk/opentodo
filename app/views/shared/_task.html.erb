@@ -1,7 +1,7 @@
 <li class="list-group-item" id="<%= dom_id task %>">
   <input class="form-check-input me-1" type="checkbox" name="task[<%= task.id %>]">
    <a data-bs-toggle="collapse" href="#collapse<%= task.id %>" role="button" aria-expanded="false" aria-controls="collapse" style="color: black;text-decoration: none;">
-    <%= task.title %>
+    <%= word_trim(task.title) %>
   </a>
     <span class="badge bg-primary rounded-pill"><%= status(task.room_id, task.worker) %></span>
   <div class="collapse" id="collapse<%= task.id %>">
