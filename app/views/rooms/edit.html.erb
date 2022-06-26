@@ -1,4 +1,5 @@
 <%= turbo_frame_tag "frame_edit" do %>
+
 <%= form_with url: "/rooms/#{@room.id}", method: :patch do |form| %>
   <div class="mb-3">
     <label for="title" class="form-label">Название</label>
@@ -10,4 +11,5 @@
   </div>
   <button type="submit" class="btn btn-primary mb-2">Сохранить</button>
   <% end %>
-  <% end %>
+  
+<% end %>

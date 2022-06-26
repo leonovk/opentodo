@@ -1,12 +1,12 @@
 <% provide :page_title, @room.title %>
 <% provide :current_page, 'Комнаты' %>
 
-
+<div class="card" style="background-color: #f8f9fc; border: none;">
 <%= turbo_frame_tag "frame_edit" do %>
 <h1 class="display-5"><%= link_to "#{@room.title.truncate(50, separator: /\s/)}", edit_room_path(@room), style: "color:black;text-decoration:none;"%></h1>
-<p class="lead"><%= link_to "#{word_trim(@room.description)}", edit_room_path(@room), style: "color:black;text-decoration:none;"%></p>
+<p class="lead"><%= link_to "#{@room.description}", edit_room_path(@room), style: "color:black;text-decoration:none;"%></p>
 <% end %>
-
+</div>
 
 
 <button type="button" class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#Modal">Участники</button>
@@ -62,12 +62,11 @@
         <h5 class="modal-title" id="ModalLabel1">Вы уверены?</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-                  <%= form_with url: "/rooms/#{@room.id}/delete", method: :delete do |form| %>
-                  <button type="submit" class="btn btn-danger"><%= delete_or_exit(@room.owner_id) %></button>
-                  <% end %>
+          <%= form_with url: "/rooms/#{@room.id}/delete", method: :delete do |form| %>
+            <button type="submit" class="btn btn-danger"><%= delete_or_exit(@room.owner_id) %></button>
+          <% end %>
       </div>
     </div>
   </div>
