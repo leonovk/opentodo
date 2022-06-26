@@ -21,10 +21,12 @@ class User < ApplicationRecord
 
   def remember_token_authenticated?(remember_token)
     return false unless remember_token_digest.present?
+
     BCrypt::Password.new(remember_token_digest).is_password?(remember_token)
   end
 
   private
+
   def digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)

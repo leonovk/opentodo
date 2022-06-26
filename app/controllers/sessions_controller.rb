@@ -2,8 +2,7 @@ class SessionsController < ApplicationController
   before_action :require_no_signed_in, only: :new
   before_action :require_signed?, only: :destroy
 
-  def new
-  end
+  def new; end
 
   def create
     user = User.find_by login: params[:login]

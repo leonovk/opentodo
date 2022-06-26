@@ -1,20 +1,19 @@
 class TasksController < ApplicationController
   before_action :room_determinant
   before_action :authorize_chek
-  
 
   def create
     return false unless room_rights_write(current_user.id, params['id'])
+
     task = Task.new(title: params['task'], user_id: current_user.id, room_id: @room_id)
     room = Room.find_by(id: params['id'])
-    room.update(updated_at: Time.now) if params['id'] != nil and room.present?
+    room.update(updated_at: Time.now) if !params['id'].nil? and room.present?
     if task.save
       respond_to do |format|
         format.turbo_stream do
-          render turbo_stream: turbo_stream.append(:tasks, partial: "shared/task",
-          locals: { task: task })
+          render turbo_stream: turbo_stream.append(:tasks, partial: 'shared/task', locals: { task: task })
         end
-        if params['id'] != nil
+        if !params['id'].nil?
           format.html { redirect_to "/rooms/#{task.room_id}" }
         else
           format.html { redirect_to root_path }
@@ -36,72 +35,63 @@ class TasksController < ApplicationController
         redirect_to "/rooms/#{task.room_id}"
       else
         redirect_to root_path
-      end    
+      end
     end
-    
   end
-  
 
   def status
     return false unless room_rights_write(current_user.id, params['id'])
-    return false if params['task'] == nil
+    return false if params['task'].nil?
+
     parameters = []
-    params['task'].each do |k, v|
+    params['task'].each do |k, _v|
       parameters << k
     end
-    for id in parameters do
+    parameters.each { |id|
       task = Task.find(id)
-      if params['get'] == '1'
-        task.destroy 
-      elsif params['get'] == '2'  
+      case params['get']
+      when '1'
+        task.destroy
+      when '2'
         if task.worker == current_user.name
-          task.update(worker: nil) 
+          task.update(worker: nil)
         else
-          task.update(worker: current_user.name) 
+          task.update(worker: current_user.name)
         end
       else
         message('error')
       end
-    end
+    }
     if params['id'] != '0'
-      Room.find_by(id: params['id']).update(updated_at: Time.now)  
+      Room.find_by(id: params['id']).update(updated_at: Time.now)
       redirect_to "/rooms/#{params['id']}"
     else
       redirect_to root_path
     end
   end
-  
 
   private
+
   def room_determinant
     if params['id'] == nil
       @room_id = 0
     else
       chek_room = Room.find_by(id: params['id'])
-      if chek_room.present?
-        @room_id = params['id']
-      else
-        @room_id = 0
-      end
+      @room_id = chek_room.present? ? params['id'] : 0
     end
   end
 
   def task_rights(task_id)
     task = Task.find(task_id)
     if user_signed_in?
-      if task.room_id == 0
-        if task.user_id != current_user.id
-          redirect_to root_path
-        end
+      if task.room_id.zero?
+        redirect_to root_path if task.user_id != current_user.id
       else
         rec = Recorder.find_by(user_id: current_user.id, room_id: task.room_id)
-        unless rec.present?
-          redirect_to root_path
-        end
+        redirect_to root_path unless rec.present?
       end
     else
       redirect_to root_path  
     end 
   end
-  
 end

@@ -4,7 +4,7 @@ module MainHandling
   included do
     def require_no_signed_in
       if user_signed_in?
-        flash[:class] = "alert alert-warning alert-dismissible fade show"
+        flash[:class] = 'alert alert-warning alert-dismissible fade show'
         flash[:text] = 'Вы уже авторизованы!'
         redirect_to root_path
       end
@@ -19,11 +19,8 @@ module MainHandling
     end
 
     def authorize_chek
-      unless user_signed_in?
-        redirect_to root_path
-      end
-    end
-    
+      redirect_to root_path unless user_signed_in?
+    end    
   
     def remember(user)
       user.remember_me
@@ -44,15 +41,10 @@ module MainHandling
     def login_trimer(login)
       l = login.gsub(' ','')
     end
-    
+
     def valid_password?(password)
-      if password.size >= 6
-        true
-      else
-        false
-      end
+      password.size >= 6
     end
-    
 
   end
 end

@@ -24,7 +24,8 @@ class UsersController < ApplicationController
     else
       user = User.find_by id: current_user.id
       if user.authenticate(params[:old_password]) and valid_password?(params['password'])
-        if user.update(login: params['login'], name: params['name'], invite_status: params['invites'], password: params['password'], password_confirmation: params['password_confirmation'])
+        if user.update(login: params['login'], name: params['name'], invite_status: params['invites'], 
+                       password: params['password'], password_confirmation: params['password_confirmation'])
           redirect_to root_path
           message('success')
         else
@@ -38,14 +39,13 @@ class UsersController < ApplicationController
     end
   end
   
-
   def create
     @user = User.new user_params
     @user.login = login_trimer(@user.login)
     if @user.save
       session[:user_id] = @user.id
       redirect_to root_path
-      flash[:class] = "alert alert-success alert-dismissible fade show"
+      flash[:class] = 'alert alert-success alert-dismissible fade show'
       flash[:text] = "Добро пожаловать, #{@user.name}!"
     else
       message('error')
@@ -55,6 +55,7 @@ class UsersController < ApplicationController
 
 
   private
+
   def user_params
     params.require(:user).permit(:login, :name, :password, :password_confirmation)
   end
