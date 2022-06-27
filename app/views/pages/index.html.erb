@@ -10,23 +10,25 @@
 
 <% else %>
 
-<div class="row">
- <div class="col-md-8 mx-auto" style="margin-top:50px;">
-
-      <center><h1>Организуйте работу и жизнь.</h1></center>
-      <center><h2>OpenTodo – список дел и таск-менеджер. Он позволяет организовывать работу и задачи, а также кооперироваться с друзьями или коллегами.</h2></center>
-      <center><a type="button" class="btn btn-primary btn-lg mt-3 mb-5" href="/users/new">Начать организовывать</a></center>
-
+<div class="px-4 pt-5 my-5 text-center border-bottom">
+    <h1 class="display-4 fw-bold">Организуйте работу и жизнь</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">OpenTodo – список дел и таск-менеджер. Он позволяет организовывать работу и задачи, а также кооперироваться с друзьями или коллегами.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+        <a href="/users/new" type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Начать организовывать</a>
+        <a href="/session/new" type="button" class="btn btn-outline-secondary btn-lg px-4">Войти</a>
+      </div>
+    </div>
+    <div class="overflow-hidden" style="max-height: 30vh;">
+      <div class="container px-5">
+        <img src="images/demo.png" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" loading="lazy" width="700" height="500">
+      </div>
+    </div>
   </div>
-  </div>
 
-
-  
-<div class="">
-<center><img src="images/demo.png" class="img-fluid mt-5 shadow-lg p-3 mb-5 bg-body rounded" alt="..." id="demo"></center>
-</div>
 
 <%= render 'shared/faq' %>
+<%= render 'shared/footer' %>
 
 <% end %>
 
