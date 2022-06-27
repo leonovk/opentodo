@@ -1,17 +1,13 @@
-<div class="card" style="margin-top: 10px;">
-   <a href="/rooms/<%= r.id %>" style="color:black;text-decoration:none;"><h5 class="card-header"><%= r.title %></h5></a>
-  <div class="card-body">
-    <p class="card-text"><%= r.description %></p>
-    <% user = r.users %>
-    <% i = 0 %>
-    <p>Участники: <%= members(r.id) %></p>
+<a href="/rooms/<%= r.id %>" class="list-group-item list-group-item-action" aria-current="true">
+
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1"><%= sanitize word_trim(r.title).truncate(50), tags: %w(&shy;) %></h5>
+    </div>
+    <p class="mb-1"><%= sanitize word_trim(r.description), tags: %w(&shy;) %></p>
+    <small>Участники: <%= members(r.id) %></small><br>
     <% if r.tasks.size > 0 %>
-    <p>Тасков: <%= r.tasks.size %></p>
+    <small>Тасков: <%= r.tasks.size %></small><br>
     <% end %>
-  </div>
-    <div class="card-footer text-muted">
-    <%= distance_of_time_in_words(r.updated_at, Time.now) %> назад
-  </div>
-</div>
+    <small class="opacity-50 text-nowrap"><%= distance_of_time_in_words(r.updated_at, Time.now) %> назад</small>
 
-
+</a>

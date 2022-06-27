@@ -15,11 +15,11 @@ module RoomsHelper
     b.join('')
   end
 
-  def word_trim(str, len = 35)
+  def word_trim(str, len = 10)
     unless str.nil?
       fragment = /.{#{len}}/
       str = str.split(/(\s+)/).map! do |word|
-        /\s/ === word ? word : word.gsub(fragment, '\0 ')
+        /\s/ === word ? word : word.gsub(fragment, '\0&shy;')
       end.join
     end
   end

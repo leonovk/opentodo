@@ -15,7 +15,7 @@
 
 
 
-<div class="collapse" id="collapserooms">
+<div class="collapse mb-2" id="collapserooms">
   <div class="card card-body">
     <%= form_with model: @room, data: { controller: "reset", action: "turbo:submit-end->reset#reset"} do |u| %>
     <input type="text" id="title" class="form-control" name="title" placeholder="Название комнаты">
@@ -26,12 +26,14 @@
   </div>
 </div>
 
-<div class="mt-3">
+
+<div class="list-group">
 <% @rooms.each do |r| %>
 <%= render "shared/room", r: r %>
 <% end %>
 </div>
 
-<div style="margin-top: 10px;">
+
+<div class="d-flex justify-content-center" style="margin-top: 10px;">
 <%= paginate @rooms %>
 </div>
