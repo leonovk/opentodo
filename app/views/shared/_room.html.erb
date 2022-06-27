@@ -4,10 +4,15 @@
       <h5 class="mb-1"><%= sanitize word_trim(r.title).truncate(50), tags: %w(&shy;) %></h5>
     </div>
     <p class="mb-1"><%= sanitize word_trim(r.description), tags: %w(&shy;) %></p>
+
+    <% if !members(r.id).nil? %>
     <small>Участники: <%= members(r.id) %></small><br>
+    <% end %>
+
     <% if r.tasks.size > 0 %>
     <small>Тасков: <%= r.tasks.size %></small><br>
     <% end %>
+    
     <small class="opacity-50 text-nowrap"><%= distance_of_time_in_words(r.updated_at, Time.now) %> назад</small>
 
 </a>

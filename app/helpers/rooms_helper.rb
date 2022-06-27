@@ -5,6 +5,8 @@ module RoomsHelper
 
   def members(room_id)
     users = Room.find_by(id: room_id).users
+    return nil if users.size <= 1
+    
     b = []
     i = 1
     users.each do |user|
