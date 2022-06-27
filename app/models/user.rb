@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-
   attr_accessor :remember_token
+
   has_secure_password
   has_many :recorders
   has_many :tasks
@@ -8,12 +8,12 @@ class User < ApplicationRecord
   validates :login, presence: true, uniqueness: true, length: { minimum: 3, maximum: 50 }
   validates :name, length: { maximum: 50, minimum: 2 }, presence: true
   before_save :remove_whitespaces
-  
+
   def remember_me
     self.remember_token = SecureRandom.urlsafe_base64
-    update_column :remember_token_digest, digest(remember_token)  
+    update_column :remember_token_digest, digest(remember_token)
   end
-  
+
   def forget_me
     update_column :remember_token_digest, nil
     self.remember_token = nil
@@ -29,12 +29,10 @@ class User < ApplicationRecord
 
   def digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
-    BCrypt::Password.create(string, cost: cost)
+    BCrypt::Password.create(string, cost:)
   end
 
   def remove_whitespaces
     name.strip!
   end
-  
-
 end

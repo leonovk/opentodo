@@ -1,13 +1,13 @@
 class RoomsController < ApplicationController
   before_action :authorize_chek
-  before_action :room_checker, only: [:show, :add, :destroy]
+  before_action :room_checker, only: %i[show add destroy]
 
   def index
     user = User.find(current_user.id)
     @rooms = user.rooms.order('updated_at DESC').page(params[:page]).per(5)
   end
 
-  def create 
+  def create
     r = Room.new(title: params['title'], owner_id: current_user.id)
     if r.save
       rec = Recorder.new(room_id: r.id, user_id: current_user.id)
@@ -27,10 +27,9 @@ class RoomsController < ApplicationController
   def update
     room_rights(params['id'])
     @room = Room.find_by id: params['id']
-    redirect_to "/rooms/#{params['id']}" if @room.update(title: params['title'], description: params['description'])  
+    redirect_to "/rooms/#{params['id']}" if @room.update(title: params['title'], description: params['description'])
   end
-  
-  
+
   def show
     @room = Room.find(params['id'])
     user = @room.users.find_by(id: current_user.id)
@@ -41,8 +40,8 @@ class RoomsController < ApplicationController
       redirect_to root_path
     end
   end
-  
-## and remove users in room
+
+  ## and remove users in room
   def add
     user = User.find_by(login: params['login'])
     room = Room.find(params['id'])
@@ -86,5 +85,4 @@ class RoomsController < ApplicationController
     room = Room.find_by id: params['id']
     redirect_to rooms_path unless room.present?
   end
-  
 end

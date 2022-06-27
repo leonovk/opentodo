@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def currently_at(page = '', numberlink)
     case page
     when 'Главная'

@@ -1,19 +1,18 @@
 Rails.application.routes.draw do
+  resource :session, only: %i[new create destroy]
 
-  resource :session, only: [:new, :create, :destroy]
+  resources :users, only: %i[new create edit update]
 
-  resources :users, only: [:new, :create, :edit, :update]
+  resources :rooms, only: %i[edit update index create show]
 
-  resources :rooms, only: [:edit, :update, :index, :create, :show]
+  resources :tasks, only: %i[edit update]
 
-  resources :tasks, only: [:edit, :update]
-  
-  post "/rooms/:id", to: "tasks#create"
-  post "/rooms/:id/add/", to: "rooms#add"
-  delete "/rooms/:id/delete/", to: "rooms#destroy"
-  post "/rooms/tasks/status/:id", to: "tasks#status"
-  post "/", to: "tasks#create"
-  get "/admin", to: "admins#index" 
+  post '/rooms/:id', to: 'tasks#create'
+  post '/rooms/:id/add/', to: 'rooms#add'
+  delete '/rooms/:id/delete/', to: 'rooms#destroy'
+  post '/rooms/tasks/status/:id', to: 'tasks#status'
+  post '/', to: 'tasks#create'
+  get '/admin', to: 'admins#index'
   root 'pages#index'
-  get "/faq", to: "pages#faq"
+  get '/faq', to: 'pages#faq'
 end

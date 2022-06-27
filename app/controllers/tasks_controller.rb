@@ -11,12 +11,12 @@ class TasksController < ApplicationController
     if task.save
       respond_to do |format|
         format.turbo_stream do
-          render turbo_stream: turbo_stream.append(:tasks, partial: 'shared/task', locals: { task: task })
+          render turbo_stream: turbo_stream.append(:tasks, partial: 'shared/task', locals: { task: })
         end
-        if !params['id'].nil?
-          format.html { redirect_to "/rooms/#{task.room_id}" }
-        else
+        if params['id'].nil?
           format.html { redirect_to root_path }
+        else
+          format.html { redirect_to "/rooms/#{task.room_id}" }
         end
       end
     end
@@ -24,17 +24,17 @@ class TasksController < ApplicationController
 
   def edit
     task_rights(params['id'])
-    @task = Task.find_by id: params['id'] 
+    @task = Task.find_by id: params['id']
   end
 
   def update
     task_rights(params['id'])
     task = Task.find_by id: params['id']
     if task.update(title: params['title'], description: params['description'])
-      if task.room_id != 0
-        redirect_to "/rooms/#{task.room_id}"
-      else
+      if task.room_id == 0
         redirect_to root_path
+      else
+        redirect_to "/rooms/#{task.room_id}"
       end
     end
   end
@@ -47,7 +47,7 @@ class TasksController < ApplicationController
     params['task'].each do |k, _v|
       parameters << k
     end
-    parameters.each { |id|
+    parameters.each do |id|
       task = Task.find(id)
       case params['get']
       when '1'
@@ -61,19 +61,19 @@ class TasksController < ApplicationController
       else
         message('error')
       end
-    }
-    if params['id'] != '0'
+    end
+    if params['id'] == '0'
+      redirect_to root_path
+    else
       Room.find_by(id: params['id']).update(updated_at: Time.now)
       redirect_to "/rooms/#{params['id']}"
-    else
-      redirect_to root_path
     end
   end
 
   private
 
   def room_determinant
-    if params['id'] == nil
+    if params['id'].nil?
       @room_id = 0
     else
       chek_room = Room.find_by(id: params['id'])
@@ -91,7 +91,7 @@ class TasksController < ApplicationController
         redirect_to root_path unless rec.present?
       end
     else
-      redirect_to root_path  
-    end 
+      redirect_to root_path
+    end
   end
 end

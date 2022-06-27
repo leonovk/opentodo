@@ -2,8 +2,9 @@ class ApplicationController < ActionController::Base
   include MainHandling
   include Notifications
   include Rights
-  
+
   private
+
   def current_user
     if session[:user_id].present?
       @current_user = User.find_by(id: session[:user_id])

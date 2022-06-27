@@ -1,7 +1,6 @@
 module Rights
   extend ActiveSupport::Concern
 
-
   included do
     def rooms_rights_owner(user_id, room_id)
       user = User.find(user_id)
@@ -15,7 +14,7 @@ module Rights
     end
 
     def room_rights_write(user_id, room_id)
-      if room_id != '0' and room_id != nil
+      if room_id != '0' and !room_id.nil?
         room = Room.find_by(id: room_id)
         return false unless room.present?
 
@@ -26,15 +25,12 @@ module Rights
         end
       else
         true
-      end   
+      end
     end
-    
+
     def room_rights(room_id)
       room = Room.find(room_id)
-      if room.owner_id != current_user.id
-        redirect_to "/rooms/#{room_id}"
-      end    
+      redirect_to "/rooms/#{room_id}" if room.owner_id != current_user.id
     end
-  
   end
 end

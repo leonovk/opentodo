@@ -9,7 +9,7 @@ module MainHandling
         redirect_to root_path
       end
     end
-  
+
     def require_signed?
       if user_signed_in?
         true
@@ -20,31 +20,30 @@ module MainHandling
 
     def authorize_chek
       redirect_to root_path unless user_signed_in?
-    end    
-  
+    end
+
     def remember(user)
       user.remember_me
       cookies.encrypted.permanent[:remember_token] = user.remember_token
       cookies.encrypted.permanent[:user_id] = user.id
     end
-  
+
     def forget(user)
       user.forget_me
       cookies.delete :user_id
       cookies.delete :remember_token
     end
-  
+
     def have_room?
       @room.present?
     end
 
     def login_trimer(login)
-      l = login.gsub(' ','')
+      login.gsub(' ', '')
     end
 
     def valid_password?(password)
       password.size >= 6
     end
-
   end
 end
