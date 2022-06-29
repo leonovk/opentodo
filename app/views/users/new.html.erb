@@ -1,43 +1,43 @@
 <% provide :page_title, 'Регистрация' %>
 <% provide :current_page, 'Регистрация' %>
 
-<h1>Регистрация</h1>
 
+
+<div class="row mt-5">
+
+<div class="col-md-4"></div>
+<div class="col-md-4">
+<h1>Регистрация</h1>
 <%= form_with model: @user do |u| %>
 
-  <div class="row mb-3">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">Логин</label>
-    <div class="col-sm-10">
-      <%= u.text_field :login, class: 'form-control', id: 'inputEmail3', placeholder: 'Ваш логин'%>
-    </div>
+  <div class="form-floating mb-3">
+    <%= u.text_field :login, class: 'form-control', id: 'inputEmail3', placeholder: 'Ваш логин'%>
+    <label for="inputEmail3">Логин</label>
   </div>
 
-  <div class="row mb-3">
-    <label for="name3" class="col-sm-2 col-form-label">Имя</label>
-    <div class="col-sm-10">
-      <%= u.text_field :name, class: 'form-control', id: 'name3', placeholder: 'Ваше имя'%>
-    </div>
+  <div class="form-floating mb-3">
+    <%= u.text_field :name, class: 'form-control', id: 'name3', placeholder: 'Ваше имя'%>
+    <label for="name3">Имя</label>
   </div>
 
-  <div class="row mb-3">
-    <label for="inputPassword3" class="col-sm-2 col-form-label">Пароль</label>
-    <div class="col-sm-10">
-      <%= u.password_field :password, type: 'password', class: 'form-control', id: 'inputPassword3', placeholder: 'Пароль'%>
-    </div>
+  <div class="form-floating mb-3">
+    <%= u.password_field :password, type: 'password', class: 'form-control', id: 'inputPassword3', placeholder: 'Пароль'%>
+    <label for="inputPassword3">Пароль</label>
   </div>
 
-    <div class="row mb-3">
-    <label for="inputpassword_confirmation3" class="col-sm-2 col-form-label">Подтверждение пароля</label>
-    <div class="col-sm-10">
-      <%= u.password_field :password_confirmation, type: 'password', class: 'form-control', id: 'inputpassword_confirmation3', placeholder: 'Подтверждение пароля'%>
-    </div>
+  <div class="form-floating mb-3">
+    <%= u.password_field :password_confirmation, type: 'password', class: 'form-control', id: 'inputpassword_confirmation3', placeholder: 'Подтверждение пароля'%>
+    <label for="inputpassword_confirmation3">Подтверждение пароля</label>
   </div>
+
 <%= u.submit "Регистрация", class: 'btn btn-primary' %>
+<%= link_to "Eсть аккаунт?", new_session_path, class: 'btn btn-outline-secondary' %>
 <% end %> 
-
-<div class="mt-3">
-<%= link_to "Уже есть аккаунт?", new_session_path %>
 </div>
+<div class="col-md-4"></div>
+
+</div>
+
 
 
 

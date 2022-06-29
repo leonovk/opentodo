@@ -1,34 +1,27 @@
 module ApplicationHelper
-  def currently_at(page = '', numberlink)
+  def currently_at(page = '', numbers)
     case page
     when 'Главная'
-      if numberlink == 1
-        'nav-link active'
-      else
-        'nav-link'
-      end
+      numbers == 1 ? 'nav-link active' : 'nav-link'
     when 'Комнаты'
-      if numberlink == 2
-        'nav-link active'
-      else
-        'nav-link'
-      end
+      numbers == 2 ? 'nav-link active' : 'nav-link'
     when 'Регистрация'
-      if numberlink == 3
-        'nav-link active'
-      else
-        'nav-link'
-      end
+      numbers == 3 ? 'nav-link active' : 'nav-link'
     when 'Войти'
-      if numberlink == 4
-        'nav-link active'
-      else
-        'nav-link'
-      end
+      numbers == 4 ? 'nav-link active' : 'nav-link'
     else
       'nav-link'
     end
   end
+
+  def drop_active(page)
+    if page == 'Профиль'
+      'nav-link dropdown-toggle active'
+    else
+      'nav-link dropdown-toggle'
+    end
+  end
+  
 
   def full_title(page_title = '')
     base_title = 'OpenTodo'

@@ -1,8 +1,11 @@
 <% provide :page_title, 'Войти' %>
 <% provide :current_page, 'Войти' %>
 
-<h1>Войти в систему</h1>
 
+<div class="row mt-5">
+<div class="col-md-4"></div>
+<div class="col-md-4">
+<h1>Войти в систему</h1>
 <%= form_with url: session_path do |f| %>
 
   <div class="form-floating mb-3">
@@ -22,4 +25,7 @@
   <%= f.submit "Войти", class: 'btn btn-primary mt-3' %>
 
 <% end %>
+</div>
+<div class="col-md-4"></div>
+</div>
 
