@@ -1,5 +1,6 @@
 <% provide :page_title, @room.title %>
 <% provide :current_page, 'Комнаты' %>
+<% provide :settings, 'room' %>
 
 <div class="card" style="background-color: #f8f9fc; border: none;">
 <%= turbo_frame_tag "frame_edit" do %>
@@ -9,11 +10,7 @@
 </div>
 
 
-<button type="button" class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#Modal">Участники</button>
-<button type="button" class="btn btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#Modal1"><%= delete_or_exit(@room.owner_id) %></button>
-
-
-<div style="margin-top: 20px;">
+<div style="margin-top: 10px;">
 <%= render 'shared/tasks'%>
 <%= render 'shared/taskform' %>
 </div>

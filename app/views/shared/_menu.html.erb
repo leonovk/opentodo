@@ -1,4 +1,6 @@
-<% active = (yield(:current_page)) %> 
+<% active = (yield(:current_page)) %>
+<% sett = (yield(:settings)) %>
+
 <nav class="navbar navbar-expand-lg navbar-dark mb-1" style="background-color: #061A40;">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">OpenTodo</a>
@@ -26,6 +28,19 @@
             </form>
           </ul>
         </li>
+
+        <% if sett == 'room' %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= @room.title.truncate(10) %>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+            <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#Modal">Участники</a></li>
+            <li><a type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#Modal1"><%= delete_or_exit(@room.owner_id) %></a></li>
+          </ul>
+        </li>
+        <% end %>
+
         <% else %>
                 <li class="nav-item">
            <a class="<%= currently_at(active, 3) %>" href="/users/new" >Регистрация</a>
