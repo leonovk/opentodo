@@ -1,7 +1,7 @@
 <% provide :page_title, 'Настройки' %>
 <% provide :current_page, 'Профиль' %>
 
-<h4>Изменить профиль</h4>
+<h4 class="mt-4">Изменить профиль</h4>
 
 <%= form_with url: "/users/#{current_user.id}", method: :patch do |u| %>
 

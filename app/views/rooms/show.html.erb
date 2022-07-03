@@ -1,7 +1,7 @@
 <% provide :page_title, @room.title %>
 <% provide :settings, 'room' %>
 
-<div class="card" style="background-color: #f8f9fc; border: none;">
+<div class="card mt-3" style="background-color: #f8f9fc; border: none;">
 <%= turbo_frame_tag "frame_edit" do %>
 <h1 class="display-5"><%= link_to "#{@room.title.truncate(50, separator: /\s/)}", edit_room_path(@room), style: "color:black;text-decoration:none;"%></h1>
 <p class="lead"><%= link_to "#{@room.description}", edit_room_path(@room), style: "color:black;text-decoration:none;"%></p>
