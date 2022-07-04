@@ -21,21 +21,16 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="ModalLabel">Добавить нового пользователя в комнату</h5>
+        <h5 class="modal-title" id="ModalLabel">Участники</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <h4>Участники:</h4>
       <% @users.each do |users| %>
-      <p><%= users.login %></p>
+      <p><%= users.login %> <%= admin_room(@room.owner_id, users.id) %></p>
       <% end %>
       <% if current_user.id == @room.owner_id %>
       <%= form_with url: "/rooms/#{@room.id}/add", method: :post do |form| %>
-        <div class="row g-3 align-items-center">
-          <div class="col-auto">
           <input type="text" id="title" class="form-control" name="login" placeholder="Логин пользователя">
-          </div>
-          </div>
           <div style="margin-top: 7px;">
           <button type="submit" name="add" class="btn btn-primary" value="1">Добавить</button>
           <button type="submit" name="remove" class="btn btn-primary" value="2">Удалить</button>

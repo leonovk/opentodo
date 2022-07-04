@@ -25,4 +25,9 @@ module RoomsHelper
       end.join
     end
   end
+
+  def admin_room(room_owner_id, user_id)
+    return '- админ' if room_owner_id == user_id
+  end
+  
 end
