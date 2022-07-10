@@ -18,11 +18,7 @@ module Rights
         room = Room.find_by(id: room_id)
         return false unless room.present?
 
-        if room.users.find_by(id: user_id).present?
-          true
-        else
-          false
-        end
+        room.users.find_by(id: user_id).present? ? true : false
       else
         true
       end

@@ -1,11 +1,7 @@
 module TasksHelper
   def status(room_id, worker)
     unless worker.nil?
-      if room_id.zero?
-        'В работе'
-      else
-        worker
-      end
+      room_id.zero? ? 'В работе' : worker
     end
   end
 
