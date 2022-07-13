@@ -2,7 +2,7 @@ class AdminsController < ApplicationController
   before_action :admin_rights
 
   def index
-    @users = User.all.order('id DESC').includes(:tasks).page(params[:page]).per(25)
+    @users = User.left_outer_joins(:tasks).select('users.*, count(tasks.id) as task_count').group('users.id').order('id DESC').page(params[:page]).per(25)
     @rooms = Room.all.size
     @tasks = Task.all.size
   end

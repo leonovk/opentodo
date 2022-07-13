@@ -4,7 +4,7 @@ class RoomsController < ApplicationController
 
   def index
     user = User.find(current_user.id)
-    @rooms = user.rooms.order('updated_at DESC').page(params[:page]).per(10)
+    @rooms = user.rooms.includes(:users).order('updated_at DESC').page(params[:page]).per(10)
   end
 
   def create

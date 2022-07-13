@@ -3,8 +3,7 @@ module RoomsHelper
     room_owner_id == current_user.id ? 'Удалить' : 'Выйти'
   end
 
-  def members(room_id)
-    users = Room.find_by(id: room_id).users
+  def members(users)
     return nil if users.size <= 1
     
     b = []
@@ -14,7 +13,7 @@ module RoomsHelper
       b << ', ' if i < users.size
       i += 1
     end
-    b.join('')
+    "Участники: #{b.join('')}"
   end
 
   def word_trim(str, len = 10)
