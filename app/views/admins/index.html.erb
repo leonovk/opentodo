@@ -9,7 +9,6 @@
       <th scope="col">login</th>
       <th scope="col">name</th>
       <th scope="col">Зарегистрирован</th>
-      <th scope="col">Состоит в комнатах</th>
       <th scope="col">Создано тасков</th>
     </tr>
   </thead>
@@ -21,7 +20,6 @@
       <td><%= u.login %></td>
       <td><%= u.name %></td>
       <td><%= l(u.created_at, format: :short) %></td>
-      <td><%= u.rooms.size %></td>
       <td><%= u.tasks.size %></td>
     </tr>
 
