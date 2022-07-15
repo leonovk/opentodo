@@ -3,9 +3,13 @@ require "rails_helper"
 
 RSpec.describe Room, :type => :model do
 
-  it "is not valid without a title" do
-    room = Room.new(title: nil)
-    expect(room).to_not be_valid
+  it "validate room?" do
+    should validate_presence_of(:title)
   end
 
+  it "has many" do
+    should have_many(:users)
+    should have_many(:tasks)
+    should have_many(:recorders)
+  end
 end
